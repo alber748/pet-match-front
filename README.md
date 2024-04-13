@@ -4,18 +4,17 @@
 
 ## Frontend - React
 
-El frontend de nuestra aplicación está construido con React. Puedes encontrar el código correspondiente en el repositorio [nombre-del-repositorio-react](enlace-al-repositorio-react). Asegúrate de explorar el código para ver cómo se crean las interfaces de usuario impresionantes.
+El frontend de nuestra aplicación está construido con React. Puedes encontrar el código correspondiente en el repositorio actual. Asegúrate de explorar el código para ver cómo se crean las interfaces de usuario impresionantes.
 
 ## Backend - Java
 
-Nuestro backend potencia toda la lógica de negocio detrás de la aplicación. El código Java está disponible en el repositorio [nombre-del-repositorio-backend](enlace-al-repositorio-backend). Sumérgete en el código para descubrir cómo manejamos los datos y las solicitudes del cliente.
+Nuestro backend potencia toda la lógica de negocio detrás de la aplicación. El código Java está disponible en el repositorio [nombre-del-repositorio-backend](https://github.com/Moscarena/PetMatch.git). Sumérgete en el código para descubrir cómo manejamos los datos y las solicitudes del cliente.
 
 ## ¿Cómo funcionan juntos?
 
 El backend y el frontend trabajan en armonía para ofrecer una experiencia de usuario perfecta. Siéntete libre de explorar ambos repositorios y ver cómo se comunican entre sí para proporcionar la funcionalidad completa de la aplicación.
 
-¡Gracias por tu interés en nuestro proyecto! Si tienes alguna pregunta o sugerencia, no dudes en abrir un problema o ponerte en contacto con nosotros.
-
+¡Gracias por tu interés en nuestro proyecto! Nos motiva mucho trabajar en esta Hackaton.
 
 
 # React + TypeScript + Vite
