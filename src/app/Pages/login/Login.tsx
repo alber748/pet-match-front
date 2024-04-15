@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 // Assets
 import perroImg from "../../../assets/perro-login.png";
@@ -7,22 +7,10 @@ import perrosImg from "../../../assets/perritos-login.png"
 
 export const Login = () => {
   const [isLogin, setIsLogin] = useState(true)
-  const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   const handleLogin = (): void => {
     setIsLogin(prevIsLogin => !prevIsLogin);
   };
-  console.log(width)
   return (
     <div className="container-login d-flex justify-content-center align-items-center  bg-huellas z-index-0 my-5">
       {isLogin ?
