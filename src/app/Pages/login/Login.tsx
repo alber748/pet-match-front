@@ -22,7 +22,7 @@ export const Login = () => {
             <button type="submit" >Ingresar</button>
             <button onClick={handleLogin}>Registrarse</button>
           </div>
-          <img src={perrosImg} alt="" className="mt-5 img-fluid imagen-bottom" style={{ marginBottom: "-4%" }} />
+          <img src={perrosImg} alt="" className="mt-5 img-fluid imagen-bottom " style={{ marginBottom: "-4%" }} />
         </form>
         :
         <form action="" className="d-flex flex-column w-25 justify-content-center align-items-center form-login gap-4 position-relative py-2">

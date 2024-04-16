@@ -10,12 +10,13 @@ import { Login } from './Pages/login/Login'
 import { Header } from './components/Header';
 import { Footer } from './components/Footer'
 
+
 const App = () => {
   return (
-   <BrowserRouter>
+    <BrowserRouter>
 
       <Header />
-      
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -23,10 +24,9 @@ const App = () => {
         <Route path="/acerca-de" element={<AcercaDe />} />
         <Route path="/perfil" element={<Perfil />} />
       </Routes>
-
       <Footer />
-      
-   </BrowserRouter>
+
+    </BrowserRouter>
   )
 }
 
