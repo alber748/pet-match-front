@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { useLocation } from "react-router-dom";
 import separador from "../../assets/recorte-seccion-down.png";
 import perroEjemplo from "../../assets/perro-ejemplo.jpeg"
 import { CardPerro } from "./CardPerro"
@@ -44,6 +45,7 @@ const catalogo = [
 
 
 export const CatalogoMin = () => {
+  const location = useLocation();
   return (
     <>
       <div className="container-catalogo mx-auto mt-3 mb-5">
@@ -53,10 +55,14 @@ export const CatalogoMin = () => {
           ))}
         </div>
       </div>
-      <Link to="/adopta" className="btn btn-warning w-25 m-auto mt-3 mb-3 z-2 ">Ver más</Link>
-      <div className="mg--10 z-1 ">
-        <img src={separador} className="w-100 img-sep-down" />
-      </div>
+      {location.pathname !== "/adopta" ? (
+        <>
+          <Link to="/adopta" className="btn btn-warning w-25 m-auto mt-3 mb-3 z-2 ">Ver más</Link>
+          <div className="mg--10 z-1 ">
+            <img src={separador} className="w-100 img-sep-down" />
+          </div>
+        </>
+      ) : null}
     </>
   )
 }

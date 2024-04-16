@@ -1,6 +1,8 @@
-
+import { CatalogoMin } from "../../../components/CatalogoMin"
 export const CatalogoCompleto = () => {
   return (
-    <div>CatalogoCompleto</div>
+    <>
+      <CatalogoMin />
+    </>
   )
 }

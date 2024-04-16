@@ -279,6 +279,45 @@ footer {
   background-color: #e78e07;
 }
 
+.bg-img-adopta {
+  background-image: url("./assets/bg-adopta.png");
+  background-position: center;
+  background-size: contain;
+
+
+}
+
+.banner-txt-adopta {
+
+  & span {
+    font-size: 45px;
+    font-weight: 600;
+    color: #000000;
+  }
+
+  & p {
+    font-size: 19px;
+    color: #bb7b04;
+  }
+
+}
+
+.container-nav-adopta {
+  & select {
+
+    min-width: 190px;
+    border: none;
+    border-bottom: 1px solid rgb(207, 143, 5);
+  }
+
+  & input {
+
+    min-width: 190px;
+    border: none;
+    border-bottom: 1px solid rgb(241, 227, 31);
+  }
+}
+
 @media (min-width: 1400px) {
   .separador {
     max-height: 250px;
