@@ -77,12 +77,12 @@ export const Login = ( ) => {
   };
 
   return (
-    <div className="container-login d-flex justify-content-center align-items-center bg-huellas z-index-0 my-5">
+    <div className="container-login d-flex justify-content-center align-items-center bg-huellas z-index-0">
       {isLogin ? (
         <form onSubmit={login}
         autoComplete="off"
           action=""
-          className="d-flex flex-column w-25 align-items-start px-5 form-login gap-4  position-relative"
+          className="d-flex flex-column w-25 align-items-start px-5 form-login gap-4 position-relative"
         >
           <h2 className="mt-5 mx-auto">Inicia Seción</h2>
           <input
