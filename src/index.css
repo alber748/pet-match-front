@@ -112,13 +112,13 @@ footer {
 .form-login {
   background-color: #f4a52c;
   border-radius: 15px;
-  box-shadow: -5px 10px 5px 0 #333333b0;
   min-width: 400px;
   height: auto;
+  min-height: 662px;
 
   & button {
     background-color: #333;
-    border-radius: 15px;
+    border-radius: 8px;
     padding: 8px;
     color: #fff;
     border: none;
@@ -129,6 +129,9 @@ footer {
   }
 }
 
+.error-mesage{
+  top: 42%;
+}
 .element-form-login {
   height: 40px;
   border: none;
@@ -318,6 +321,14 @@ footer {
   }
 }
 
+.cursor-pointer{
+  cursor: pointer;
+}
+
+p .cursor-pointer:hover{
+  opacity: 0.7;
+  text-decoration: underline;
+}
 @media (min-width: 1400px) {
   .separador {
     max-height: 250px;
