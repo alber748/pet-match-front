@@ -12,8 +12,8 @@ export const BannerPages = ({ perritoImg, separador, title, text }: BannerPagesP
   return (
     <>
       <div className="banner-container z-0">
-        <div className="d-flex banner-home m-auto w-75 ">
-          <div className="col-6 d-flex justify-content-center align-items-center flex-column p-5 text-start">
+        <div className="d-flex flex-md-row flex-column-reverse row banner-home m-auto w-md-75 w-100 flex-wrap-reverse">
+          <div className="col-md-6 col p-md-5 px-3 pb-5 d-flex justify-content-center align-items-center flex-column text-md-start text-center">
             <div className="w-100">
               <p className="text-warning mb-0 mx-3"><b>PetMatch</b></p>
             <h1> { title } </h1>
@@ -21,8 +21,8 @@ export const BannerPages = ({ perritoImg, separador, title, text }: BannerPagesP
              <button className="btn btn-warning btn-link-a"><Link to={ "/adopta" }>Ver los perritos</Link></button>
             </div>
           </div>
-          <div className="col-6 p-5 d-flex justify-content-end ">
-            <img className="w-75" src={ perritoImg } alt="Perro" />
+          <div className="col-md-6 col p-md-5 px-5 d-flex justify-content-md-end justify-content-center max-w-500">
+            <img className="w-100 h-auto object-fit-cover" src={ perritoImg } alt="Perro" />
           </div>
         </div>
       </div>
