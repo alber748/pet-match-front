@@ -8,6 +8,7 @@ export interface User {
       phone: string;
       location: string;
       kindRol: string;
+      entidad: string;
 }
 
 export interface UserLogin {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import users, { User } from '../../../data/users';
-
+import axios from 'axios';
 // Assets
 import perroImg from "../../../assets/perro-login.png";
 import perrosImg from "../../../assets/perritos-login.png";
@@ -22,6 +22,7 @@ export const Login = ( ) => {
     phone: '',
     location: '',
     kindRol: '',
+    entidad: '',
   });
 
   const [formDataLogin, setFormDataLogin] = useState<UserLogin>({
@@ -44,29 +45,48 @@ export const Login = ( ) => {
   };
 
   // Login mientras no se implemente el servicio en backend
-  const login: React.FormEventHandler<HTMLFormElement> = (event) => {
+  const login: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
+    const user = formDataLogin;
 
-    const users = JSON.parse(localStorage.getItem('users') || '[]') as User[];
+    try {
+      
+      const response = await axios.post('https://pet-match-backend.onrender.com/api/auth', user);
+      
+      console.log('Usuario logueado:', response.data);
 
-    const user = users.find((user) => user.email === formDataLogin.email && user.password === formDataLogin.password);
+      if (response.data.token) {
+        navigate('/');
+        localStorage.setItem('token', JSON.stringify(response.data.token));
+      } else {
+        const errorMesaage = document.getElementById('error-login');
+        errorMesaage?.classList.remove('d-none');
+        errorMesaage?.classList.add('d-block');
+      }
 
-    if (user) {
-      navigate('/');
-      localStorage.setItem('user', JSON.stringify(user));
-    } else {
-      const errorMesaage = document.getElementById('error-login');
-      errorMesaage?.classList.remove('d-none');
-      errorMesaage?.classList.add('d-block');
-    }
-  
+    } catch (error) {
+      console.error('Error al crear usuario:', error);
+    }  
   };
+
+  const createUser = async (user: User) => {
+    try {
+      
+      const response = await axios.post('https://pet-match-backend.onrender.com/api/auth/new', user);
+      
+      console.log('Usuario creado:', response.data);
+    } catch (error) {
+      console.error('Error al crear usuario:', error);
+    }
+  }
 
   // Registro mientras no se implemente el servicio en backend
   const register: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    console.log('Formulario enviado'  )
+    
     const newUser: User = formData;
+    createUser(newUser);
+    
     users.push(newUser);
 
     localStorage.setItem('users', JSON.stringify(users));
