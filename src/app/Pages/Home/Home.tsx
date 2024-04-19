@@ -2,7 +2,7 @@
 import { BannerPages } from '../../components/BannerPages';
 
 // Assets
-import perritoImg from "../../../assets/perrito-home.jpeg";
+import perritoImg from "../../../assets/perrito-home.png";
 import separador from "../../../assets/recorte-seccion.png";
 import { CatalogoMin } from '../../components/CatalogoMin';
 import { PorqueEscogernos } from './components/PorqueEscogernos';
