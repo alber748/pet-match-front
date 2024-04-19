@@ -567,11 +567,14 @@ p .cursor-pointer:hover {
 
     & h1 {
       color: #bb7b04;
-      
+
     }
-    & p{
+
+    & p {
       font-size: 18px;
-      & span{
+      letter-spacing: 2px;
+
+      & span {
         font-size: 19px;
         font-weight: 600;
       }
@@ -580,13 +583,14 @@ p .cursor-pointer:hover {
     & .info-top {
       border-bottom: 1px solid #cecdcd;
     }
+
     & .info-bottom {
       margin-right: 35px;
     }
   }
 }
 
-.container-card-dogs{
+.container-card-dogs {
   height: auto;
 }
 

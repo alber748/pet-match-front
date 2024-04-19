@@ -4,7 +4,7 @@ import logo from "../../../../assets/logo-user.png"
 
 export const InformacionPerfil = () => {
     return (
-        <div className=" d-flex justify-content-around my-5 p-3 container-info-perfil w-100">
+        <div className=" d-flex justify-content-center my-5 p-3 container-info-perfil w-100">
             <div className="h-100 mt-5  cont-img">
                 <img src={logo} alt="" />
             </div>
