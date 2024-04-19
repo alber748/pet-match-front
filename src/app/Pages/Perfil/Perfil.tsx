@@ -10,12 +10,12 @@ export const Perfil = () => {
       </div>
       <div className="mb-5">
         <InfoAdopciones
-          title="Tus postulacion para adoptar"
+          title="Tus postulaciones para adoptar"
         />
       </div>
       <div className="mb-5">
         <InfoAdopciones
-          title="Tus publicaciones de adopcion"
+          title="Tus publicaciones de adopción"
         />
       </div>
     </div>
