@@ -16,7 +16,6 @@ export const Perfil = () => {
       <div className="mb-5">
         <InfoAdopciones
           title="Tus publicaciones de adopción"
-          
         />
       </div>
     </div>

@@ -50,7 +50,7 @@ export const Login = () => {
 
     try {
 
-      const response = await axios.post('https://pet-match-backend.onrender.com/api/auth/ ', user);
+      const response = await axios.post('https://pet-match-backend.onrender.com/api/auth/', user);
 
       console.log('Usuario logueado:', response.data);
 
@@ -58,6 +58,9 @@ export const Login = () => {
         navigate('/');
         localStorage.setItem('token', JSON.stringify(response.data.token));
         localStorage.setItem('idUser', JSON.stringify(response.data.uid));
+        localStorage.setItem('name', JSON.stringify(response.data.name));
+        localStorage.setItem('email', JSON.stringify(response.data.email));
+        localStorage.setItem('kindRol', JSON.stringify(response.data.kindRol));
       } else {
         const errorMesaage = document.getElementById('error-login');
         errorMesaage?.classList.remove('d-none');

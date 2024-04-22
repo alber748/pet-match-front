@@ -2,18 +2,11 @@ import { useRef, useEffect, useState } from 'react';
 
 //Componentes
 import { ModalPerro } from './ModalPerro';
+import { Dog } from '../models/Dog';
 
-interface Perro {
-  id: number,
-  name: string;
-  edad: number;
-  peso: string;
-  descripcion: string;
-  files: string[];
-}
 
 interface CardPerroProps {
-  perro: Perro;
+  perro: Dog;
 }
 
 export const CardPerro = ({ perro }: CardPerroProps) => {

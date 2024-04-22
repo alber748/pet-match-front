@@ -3,18 +3,11 @@ import collar from "../../assets/collar_3905219.png"
 import huella from "../../assets/pawprint_1076928.png"
 import silueta from "../../assets/silueta_perro.png"
 import corazon from "../../assets/corazon.png"
+import { Dog } from "../models/Dog";
 
-interface Perro {
-    id: number,
-    name: string;
-    edad: number;
-    peso: string;
-    descripcion: string;
-    files: string[];
-}
 
 interface ModalPerroProps {
-    perro: Perro;
+    perro: Dog;
     modal: boolean;
     cerrarModal: () => void;
 }
