@@ -4,7 +4,7 @@ import { InfoAdopciones } from "./components/InfoAdopciones"
 import { InformacionPerfil } from "./components/InformacionPerfil"
 export const Perfil = () => {
   return (
-    <div className="container-xxl">
+    <div id="container-perfil" className="container-xxl">
       <div className="mx-auto w-75">
         <InformacionPerfil />
       </div>

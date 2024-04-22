@@ -61,18 +61,22 @@ footer {
   margin-top: -200px;
 }
 
-.max-w-500{
+.max-w-500 {
   max-width: 660px;
 }
+
 .img-sep-down {
   height: 450px;
 }
+
 .d-hidden {
   display: none;
 }
+
 .md-hidden {
   display: block;
 }
+
 @media (min-width: 768px) {
   .md-hidden {
     display: none !important;
@@ -225,6 +229,8 @@ footer {
   bottom: 0;
   background-color: #333333b6;
   z-index: 10;
+  width: 100%;
+
 }
 
 .icon-modal {
@@ -266,6 +272,7 @@ footer {
   position: absolute;
   top: 10%;
   transform: translate(-50%, -50%);
+  overflow: hidden;
 
   & div {
     background-color: #755b34fd;
@@ -549,7 +556,6 @@ footer {
     border-radius: 5px;
     border: none;
 
-
   }
 }
 
@@ -711,6 +717,16 @@ p .cursor-pointer:hover {
 }
 
 
+.modal-publicaciones {
+  top: 0;
+  left: 480px;
+}
+
+.form-publicacion {
+  & input{
+    border-radius: 15px;
+  }
+}
 
 @media (min-width: 1400px) {
   .separador {

@@ -24,10 +24,6 @@ export const ModalPerro = ({ perro, modal, cerrarModal }: ModalPerroProps) => {
             <div className={`modal  ${modal ? 'show' : ''}`} tabIndex={-1} style={{ display: modal ? 'block' : 'none' }}>
                 <div className="modal-dialog  modal-lg mi-modal-personalizado">
                     <div className="modal-content px-3 pb-3">
-                        {/* <div className="modal-header">
-                            <h5 className="modal-title">Detalles de {perro.nombre}</h5>
-                            <button type="button" className="btn-close" onClick={cerrarModal} aria-label="Close"></button>
-                        </div> */}
                         <div className="modal-body d-flex justify-content-arround py-4 px-5 my-3 border-radius">
                             <div id="carouselExampleIndicators" className="carousel slide container-carrousell">
                                 <div className="carousel-indicators z-2 bg-modal-inicator ">
