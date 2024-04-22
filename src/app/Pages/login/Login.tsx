@@ -11,13 +11,13 @@ interface UserLogin {
   password: string;
 }
 
-export const Login = ( ) => {
+export const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const navigate = useNavigate();
   const [formData, setFormData] = useState<User>({
     email: '',
     password: '',
-    name : '',
+    name: '',
     lastname: '',
     phone: '',
     location: '',
@@ -50,9 +50,9 @@ export const Login = ( ) => {
     const user = formDataLogin;
 
     try {
-      
-      const response = await axios.post('https://pet-match-backend.onrender.com/api/auth', user);
-      
+
+      const response = await axios.post('https://pet-match-backend.onrender.com/api/user/edit ', user);
+
       console.log('Usuario logueado:', response.data);
 
       if (response.data.token) {
@@ -66,14 +66,14 @@ export const Login = ( ) => {
 
     } catch (error) {
       console.error('Error al crear usuario:', error);
-    }  
+    }
   };
 
   const createUser = async (user: User) => {
     try {
-      
+
       const response = await axios.post('https://pet-match-backend.onrender.com/api/auth/new', user);
-      
+
       console.log('Usuario creado:', response.data);
     } catch (error) {
       console.error('Error al crear usuario:', error);
@@ -83,10 +83,10 @@ export const Login = ( ) => {
   // Registro mientras no se implemente el servicio en backend
   const register: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    
+
     const newUser: User = formData;
     createUser(newUser);
-    
+
     users.push(newUser);
 
     localStorage.setItem('users', JSON.stringify(users));
@@ -100,7 +100,7 @@ export const Login = ( ) => {
     <div className="container-login d-flex justify-content-center align-items-center bg-huellas z-index-0">
       {isLogin ? (
         <form onSubmit={login}
-        autoComplete="off"
+          autoComplete="off"
           action=""
           className="d-flex flex-column w-25 align-items-start px-5 form-login gap-4 position-relative"
         >
@@ -108,22 +108,21 @@ export const Login = ( ) => {
           <input
             type="email"
             placeholder="Example@gmail.com"
-            className="mt-5 w-100 ps-2 element-form-login" 
+            className="mt-5 w-100 ps-2 element-form-login"
             name="email"
-            onChange={ handleChangeLogin }
+            onChange={handleChangeLogin}
           />
           <input
             type="password"
             placeholder="Contraseña"
             className="w-100 ps-2 element-form-login"
             name="password"
-            onChange={ handleChangeLogin }
+            onChange={handleChangeLogin}
           />
           <p className="text-danger error-mesage position-absolute d-none" id="error-login"> El usuario o contraseña es incorrecto</p>
           <div className="d-flex gap-3 mt-3 justify-content-center align-items-baseline ">
             <button type="submit">Ingresa</button>
             <p>O <span className="cursor-pointer" onClick={handleLogin}>crea una cuenta</span></p>
-            {/* <button onClick={handleLogin}>Registrarse</button> */}
           </div>
           <img
             src={perrosImg}
@@ -134,12 +133,12 @@ export const Login = ( ) => {
         </form>
       ) : (
         <form
-        onSubmit={ register }
-        autoComplete="off"
+          onSubmit={register}
+          autoComplete="off"
           className="d-flex flex-column w-25 justify-content-center align-items-start form-login gap-4 position-relative py-2 px-5"
         >
           <h2 className="text-center w-100">Registrate</h2>
-          <select name="entidad" className="w-100 ps-2 element-form-login" onChange={ handleChange }>
+          <select name="entidad" className="w-100 ps-2 element-form-login" onChange={handleChange}>
             <option value="" disabled>
               Selecciona el tipo de entidad
             </option>
@@ -151,14 +150,14 @@ export const Login = ( ) => {
             placeholder="Ingrese su Nombre"
             className="w-100 ps-2 element-form-login"
             name="name"
-            onChange={ handleChange }
+            onChange={handleChange}
           />
           <input
             type="text"
             placeholder="Ingrese su Apellido"
             className="w-100 ps-2 element-form-login"
             name="lastname"
-            onChange={ handleChange }
+            onChange={handleChange}
           />
           <input
             type="tel"
@@ -168,16 +167,16 @@ export const Login = ( ) => {
             placeholder="Teléfono"
             className="w-100 ps-2 element-form-login"
             name="phone"
-            onChange={ handleChange }
+            onChange={handleChange}
           />
           <input
             type="text"
             placeholder="Ej: Argentina, Córdoba"
             className="w-100 ps-2 element-form-login"
             name="location"
-            onChange={ handleChange }
+            onChange={handleChange}
           />
-          <select name="kindRol" className="w-100 ps-2 element-form-login" onChange={ handleChange }>
+          <select name="kindRol" className="w-100 ps-2 element-form-login" onChange={handleChange}>
             <option value="v1" disabled>
               Tipo de participación
             </option>
@@ -191,18 +190,18 @@ export const Login = ( ) => {
             placeholder="Example@gmail.com"
             className="w-100 ps-2 element-form-login"
             name="email"
-            onChange={ handleChange }
+            onChange={handleChange}
           />
           <input
             type="password"
             placeholder="Crea una contraseña"
             className="w-100 ps-2 element-form-login"
             name="password"
-            onChange={ handleChange }
+            onChange={handleChange}
           />
           <div className="d-flex gap-3 mt-3 justify-content-center align-items-baseline">
-          <button type="submit">Registrarse</button>
-          <p>O <span className="cursor-pointer" onClick={handleLogin}>inicia sesion</span></p>
+            <button type="submit">Registrarse</button>
+            <p>O <span className="cursor-pointer" onClick={handleLogin}>inicia sesion</span></p>
           </div>
         </form>
       )}

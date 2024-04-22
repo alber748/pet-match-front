@@ -1,8 +1,28 @@
 import React, { useState } from "react"
+import { useNavigate } from "react-router-dom";
+
+import { UserEditInfo, UserEditPassword } from "../../data/users"
 import logo from "../../assets/logo-user.png"
+import axios from "axios"
 
 export const EditPerfil = () => {
     const [opcionesEdit, setOpcionesEdit] = useState<string>('personal');
+    const [formDataEditInfo, setFormDataEditInfo] = useState<UserEditInfo>({
+
+        name: '',
+        lastname: '',
+        phone: '',
+        location: '',
+        kindRol: '',
+        email: '',
+        entidad: '',
+    });
+    const [formDataEditPassword, setFormDataEditPassword] = useState<UserEditPassword>({
+        email: '',
+        newPassword: '',
+        oldPassword: ''
+    })
+    const navigate = useNavigate()
 
     const handleOpciones = (event: React.MouseEvent<HTMLLIElement>): void => {
         const option = event.currentTarget.dataset.option;
@@ -10,6 +30,56 @@ export const EditPerfil = () => {
             setOpcionesEdit(option);
         }
     };
+
+    const handleChangeEditInfo = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        setFormDataEditInfo({
+            ...formDataEditInfo,
+            [e.target.name]: e.target.value,
+        });
+    }
+    const handleChangeEditPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormDataEditPassword({
+            ...formDataEditPassword,
+            [e.target.name]: e.target.value,
+        })
+    }
+    const updateInfo: React.FormEventHandler<HTMLFormElement> = async (event) => {
+        event.preventDefault()
+        const newInfoUser = formDataEditInfo;
+        try {
+            const response = await axios.put('https://pet-match-backend.onrender.com/api/user/edit', newInfoUser);
+            console.log('Usuario logueado:', response.data);
+            if (response.data.token) {
+                navigate('/');
+                localStorage.setItem('token', JSON.stringify(response.data.token));
+            } else {
+                const errorMesaage = document.getElementById('error-login');
+                errorMesaage?.classList.remove('d-none');
+                errorMesaage?.classList.add('d-block');
+            }
+        } catch (error) {
+            console.error('Error al crear usuario:', error);
+        }
+    }
+
+    const updatePassword: React.FormEventHandler<HTMLFormElement> = async (event) => {
+        event.preventDefault()
+        const newPassword = formDataEditPassword
+        try {
+            const response = await axios.post(' https://pet-match-backend.onrender.com/api/user/cambiar-pasword', newPassword);
+            console.log('Contraseña actualizada', response.data);
+            if (response.data.token) {
+                navigate('/');
+                localStorage.setItem('token', JSON.stringify(response.data.token));
+            } else {
+                const errorMesaage = document.getElementById('error-login');
+                errorMesaage?.classList.remove('d-none');
+                errorMesaage?.classList.add('d-block');
+            }
+        } catch (error) {
+            console.error('Error al cambiar contraseña:', error);
+        }
+    }
     return (
         <div className="container-xxl  container-section-edit">
             <div className="row mt-5 p-3 container-editar-perfil">
@@ -33,7 +103,7 @@ export const EditPerfil = () => {
                 {opcionesEdit === "personal" ?
                     <div className="col-9">
                         <h3 className="ms-2">Generales</h3>
-                        <form action="" className=" mt-4 ps-5 form-edit-perfil">
+                        <form onSubmit={updateInfo} className=" mt-4 ps-5 form-edit-perfil">
                             <div className="mt-4 cont-img position-relative">
                                 <div className="position-relative rounded-circle overflow-hidden">
                                     <img src={logo} alt="" className="rounded-circle z-1 img-hover " />
@@ -53,6 +123,7 @@ export const EditPerfil = () => {
                                             placeholder="Jeronimo"
                                             name="name"
                                             className="w-75"
+                                            onChange={handleChangeEditInfo}
                                         />
                                     </div>
                                     <div>
@@ -62,11 +133,13 @@ export const EditPerfil = () => {
                                             placeholder="Mana"
                                             name="lastname"
                                             className="w-75"
+                                            onChange={handleChangeEditInfo}
+
                                         />
                                     </div>
                                     <div>
                                         <h5 className="mb-2">Tipo de entidad</h5>
-                                        <select name="entidad" className="w-75">
+                                        <select name="entidad" className="w-75" onChange={handleChangeEditInfo}>
                                             <option value="1">Persona</option>
                                             <option value="2">Organización</option>
                                         </select>
@@ -83,6 +156,7 @@ export const EditPerfil = () => {
                                             placeholder="Teléfono"
                                             name="phone"
                                             className="w-75"
+                                            onChange={handleChangeEditInfo}
                                         />
                                     </div>
                                     <div>
@@ -92,11 +166,12 @@ export const EditPerfil = () => {
                                             placeholder="Ej: Argentina, Córdoba"
                                             name="location"
                                             className="w-75"
+                                            onChange={handleChangeEditInfo}
                                         />
                                     </div>
                                     <div>
                                         <h5 className="mb-2"> Tipo de participación</h5>
-                                        <select name="kindRol" className="w-75">
+                                        <select name="kindRol" className="w-75" onChange={handleChangeEditInfo}>
                                             <option value="1">Guardería</option>
                                             <option value="2">Receptor</option>
                                             <option value="3">Cuidador</option>
@@ -112,6 +187,7 @@ export const EditPerfil = () => {
                                     placeholder="Example@gmail.com"
                                     name="email"
                                     className="w-75"
+                                    onChange={handleChangeEditInfo}
                                 />
                             </div>
                             <button type="submit" >Guardar</button>
@@ -120,7 +196,7 @@ export const EditPerfil = () => {
                     : opcionesEdit === "contraseña" ?
                         <div className="col-9">
                             <h3 className="ms-2">Cambiar Contraseña</h3>
-                            <form action="" className=" mt-4 ps-5 form-edit-perfil">
+                            <form onSubmit={updatePassword} className=" mt-4 ps-5 form-edit-perfil">
                                 <div className="row">
                                     <div className="col-6">
                                         <h5 className="mb-2">Contraseña actual</h5>
@@ -129,6 +205,7 @@ export const EditPerfil = () => {
                                             placeholder=""
                                             name="name"
                                             className="w-75 mb-3"
+                                            onChange={handleChangeEditPassword}
                                         />
                                     </div>
                                 </div>
@@ -140,6 +217,8 @@ export const EditPerfil = () => {
                                             placeholder=""
                                             name="name"
                                             className="w-75"
+                                            onChange={handleChangeEditPassword}
+
                                         />
                                     </div>
                                     <div className="col-6">
@@ -149,6 +228,8 @@ export const EditPerfil = () => {
                                             placeholder=""
                                             name="name"
                                             className="w-75"
+                                            onChange={handleChangeEditPassword}
+
                                         />
                                     </div>
                                 </div>
