@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 
 import { UserEditInfo, UserEditPassword } from "../../data/users"
@@ -8,7 +8,6 @@ import axios from "axios"
 export const EditPerfil = () => {
     const [opcionesEdit, setOpcionesEdit] = useState<string>('personal');
     const [formDataEditInfo, setFormDataEditInfo] = useState<UserEditInfo>({
-
         name: '',
         lastname: '',
         phone: '',
@@ -21,6 +20,15 @@ export const EditPerfil = () => {
         email: '',
         newPassword: '',
         oldPassword: ''
+    })
+    const [infoUser, setInfoUser] = useState<UserEditInfo>({
+        email: "",
+        name: "",
+        lastname: "",
+        phone: "",
+        location: "",
+        kindRol: "",
+        entidad: "",
     })
     const navigate = useNavigate()
 
@@ -80,6 +88,25 @@ export const EditPerfil = () => {
             console.error('Error al cambiar contraseña:', error);
         }
     }
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            const user = localStorage.getItem('users');
+            if (user) {
+                const arregloUsuarios = JSON.parse(user);
+                if (Array.isArray(arregloUsuarios) && arregloUsuarios.length > 0) {
+                    const primerUsuario = arregloUsuarios[0];
+                    setInfoUser({
+                        ...infoUser,
+                        ...primerUsuario
+                    });
+                } else {
+                    console.log('El arreglo de usuarios está vacío.');
+                }
+            }
+        }
+    }, [infoUser]);
     return (
         <div className="container-xxl  container-section-edit">
             <div className="row mt-5 p-3 container-editar-perfil">
@@ -120,7 +147,7 @@ export const EditPerfil = () => {
                                         <h5 className="mb-2">Nombre</h5>
                                         <input
                                             type="text"
-                                            placeholder="Jeronimo"
+                                            value={infoUser.name}
                                             name="name"
                                             className="w-75"
                                             onChange={handleChangeEditInfo}
@@ -130,7 +157,7 @@ export const EditPerfil = () => {
                                         <h5 className="mb-2">Apellido</h5>
                                         <input
                                             type="text"
-                                            placeholder="Mana"
+                                            value={infoUser.lastname}
                                             name="lastname"
                                             className="w-75"
                                             onChange={handleChangeEditInfo}
@@ -153,7 +180,7 @@ export const EditPerfil = () => {
                                             inputMode="tel"
                                             pattern="[0-9]*"
                                             maxLength={10}
-                                            placeholder="Teléfono"
+                                            value={infoUser.phone}
                                             name="phone"
                                             className="w-75"
                                             onChange={handleChangeEditInfo}
@@ -163,7 +190,7 @@ export const EditPerfil = () => {
                                         <h5 className="mb-2">Ubicación</h5>
                                         <input
                                             type="text"
-                                            placeholder="Ej: Argentina, Córdoba"
+                                            value={infoUser.location}
                                             name="location"
                                             className="w-75"
                                             onChange={handleChangeEditInfo}
@@ -184,7 +211,7 @@ export const EditPerfil = () => {
                                 <h5 className="mb-2">Email</h5>
                                 <input
                                     type="email"
-                                    placeholder="Example@gmail.com"
+                                    value={infoUser.email}
                                     name="email"
                                     className="w-75"
                                     onChange={handleChangeEditInfo}

@@ -52,7 +52,6 @@ export const ModalPublicacion = ({ cerrarModal }: ModalPublicacionProps) => {
         console.log('Formulario a enviar:', formDataToSend);
         try {
             const response = await axios.post('https://pet-match-backend.onrender.com/api/dogs', formDataToSend);
-            console.log(response.data);
         } catch (error) {
             console.error('Error al enviar archivos:', error);
         }

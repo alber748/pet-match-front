@@ -10,6 +10,8 @@ export const InformacionPerfil = () => {
         lastname: "",
         phone: "",
         location: "",
+        kindRol: "",
+        entidad: "",
     })
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -30,6 +32,31 @@ export const InformacionPerfil = () => {
         }
     }, []);
 
+    const getMappedValue = (value: string, mappings: { [key: string]: string }) => {
+        if (value && mappings[value]) {
+            return mappings[value];
+        }
+        return null; 
+    };
+
+    const valuesKindRol = () => {
+        const kindRolMappings = {
+            "1": "Guardería",
+            "2": "Receptor",
+            "3": "Cuidador",
+            "4": "Dador"
+        };
+        return getMappedValue(infoUser.kindRol, kindRolMappings);
+    };
+
+    const valueEntidad = () => {
+        const entidadMappings = {
+            "1": "Persona",
+            "2": "Organización"
+        };
+        return getMappedValue(infoUser.entidad, entidadMappings);
+    };
+
     return (
         <div className=" d-flex justify-content-center my-5 p-3 container-info-perfil w-100">
             <div className="h-100 mt-5  cont-img">
@@ -48,8 +75,8 @@ export const InformacionPerfil = () => {
                     <p>Ubicacion: <span>{infoUser.location}</span></p>
                 </div>
                 <div className=" mt-3 info-bottom">
-                    <p>Tipo de entidad: <span>Persona</span></p>
-                    <p>Tipo de participacion: <span>Receptor</span></p>
+                    <p>Tipo de entidad: <span>{valueEntidad()}</span></p>
+                    <p>Tipo de participacion: <span>{valuesKindRol()}</span></p>
                 </div>
             </div>
         </div>

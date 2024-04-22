@@ -21,7 +21,6 @@ export const CatalogoMin = () => {
         const response = await axios.get("https://pet-match-backend.onrender.com/api/dogs/get-all");
         const data = response.data.dogs
         setAllPerros(data)
-        console.log(data)
       } catch (error) {
         console.error("Hubo un error al obtener los datos:", error);
       }

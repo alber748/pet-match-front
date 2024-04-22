@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import users, { User } from '../../../data/users';
 import axios from 'axios';
 // Assets
@@ -14,6 +14,7 @@ interface UserLogin {
 export const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation()
   const [formData, setFormData] = useState<User>({
     email: '',
     password: '',
@@ -55,9 +56,13 @@ export const Login = () => {
       console.log('Usuario logueado:', response.data);
 
       if (response.data.token) {
-        navigate('/');
         localStorage.setItem('token', JSON.stringify(response.data.token));
         localStorage.setItem('idUser', JSON.stringify(response.data.uid));
+        if (location.pathname === "/login") {
+          navigate('/');
+        } else {
+          window.history.back()
+        }
       } else {
         const errorMesaage = document.getElementById('error-login');
         errorMesaage?.classList.remove('d-none');
@@ -94,7 +99,6 @@ export const Login = () => {
   const handleLogin = (): void => {
     setIsLogin((prevIsLogin) => !prevIsLogin);
   };
-
   return (
     <div className="container-login d-flex justify-content-center align-items-center bg-huellas z-index-0">
       {isLogin ? (
