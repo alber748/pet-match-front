@@ -8,7 +8,7 @@ export const ModalPublicacion = ({ cerrarModal }: ModalPublicacionProps) => {
     const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
     const [formData, setFormData] = useState<Dog>({
         id: 0,
-        idPersona: 0,
+        idPersona: '',
         name: '',
         edad: '',
         peso: '',
@@ -37,10 +37,15 @@ export const ModalPublicacion = ({ cerrarModal }: ModalPublicacionProps) => {
         selectedFiles.forEach((file) => {
             formDataToSend.append('files', file);
         });
+        const uId = localStorage.getItem('idUser');
 
-        // Agregar los nuevos campos al FormData
+
+        if (uId !== null) {
+            formDataToSend.append('idPersona', uId);
+        } else {
+            console.error('No se encontró ningún ID de usuario en el localStorage');
+        }
         formDataToSend.append('name', formData.name);
-        formDataToSend.append('idPersona', String(formData.idPersona));
         formDataToSend.append('edad', formData.edad);
         formDataToSend.append('peso', formData.peso);
         formDataToSend.append('descripcion', formData.descripcion);
@@ -71,11 +76,10 @@ export const ModalPublicacion = ({ cerrarModal }: ModalPublicacionProps) => {
                                 <div className="row w-100">
                                     <div className="col-6 p-4 d-flex flex-column gap-3 align-items-center">
                                         <input className="ps-2 w-75" type="text" name="name" placeholder="Nombre" onChange={handleChange} />
-                                        <input className="ps-2 w-75" type="text" name="idPersona" placeholder="ID Persona" onChange={handleChange} />
                                         <input className="ps-2 w-75" type="text" name="edad" placeholder="Edad" onChange={handleChange} />
+                                        <input className="ps-2 w-75" type="text" name="peso" placeholder="Peso" onChange={handleChange} />
                                     </div>
                                     <div className="col-6 p-4 d-flex flex-column gap-3 align-items-center">
-                                        <input className="ps-2 w-75" type="text" name="peso" placeholder="Peso" onChange={handleChange} />
                                         <input className="ps-2 w-75" type="text" name="descripcion" placeholder="Descripción" onChange={handleChange} />
                                         <input className="ps-2 w-75" type="text" name="situacion" placeholder="Situación" onChange={handleChange} />
                                     </div>

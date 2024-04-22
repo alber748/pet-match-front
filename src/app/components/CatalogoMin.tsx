@@ -48,20 +48,24 @@ export const CatalogoMin = () => {
   const location = useLocation();
   return (
     <>
-      <div className="container-catalogo mx-auto mt-3 mb-5">
-        <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
+      <div className="container-catalogo mx-auto mt-3 mb-5 ">
+        <div className="row row-cols-1 row-cols-md-3 g-4 mb-5  ">
           {catalogo.map(perro => (
             <CardPerro key={perro.id} perro={perro} />
           ))}
         </div>
       </div>
       {location.pathname !== "/adopta" ? (
-        <>
+        <div className="position-relative d-flex flex-column">
           <Link to="/adopta" className="btn btn-warning w-25 m-auto mt-3 mb-3 z-2 ">Ver más</Link>
-          <div className="mg--10 z-1 ">
-            <img src={separador} className="w-100 img-sep-down" />
+          <div className=" mg--10 z-1 bg-image-catalogo ">
+            <div>
+              <img src={separador} className="w-100 img-sep-down bg-image-catalogo bg-huellas" />
+
+            </div>
           </div>
-        </>
+        </div>
+
       ) : null}
     </>
   )

@@ -4,7 +4,7 @@ import perrito from "../../../../assets/perrito-porque.png";
 export const PorqueEscogernos = ( ) => {
   return (
       <>
-      <div className="w-100 bg-huellas mg--20 z-0">
+      <div className="w-100 bg-huellas mg--20 z-1">
           <h2 className="text-center mt-5 ">Porque escogernos</h2>
           <p className="text-center">Te mostramos porque somos tu mejor opcion para buscar un amigo peludo</p>
         <div className="d-flex justify-content-center align-items-center banner-home m-auto" >

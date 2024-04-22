@@ -1,6 +1,6 @@
 export interface Dog {
       id: number;
-      idPersona : number;
+      idPersona : string;
       name: string;
       edad: string;
       peso: string;

@@ -44,20 +44,20 @@ export const Login = () => {
     });
   };
 
-  // Login mientras no se implemente el servicio en backend
   const login: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     const user = formDataLogin;
 
     try {
 
-      const response = await axios.post('https://pet-match-backend.onrender.com/api/user/edit ', user);
+      const response = await axios.post('https://pet-match-backend.onrender.com/api/auth/ ', user);
 
       console.log('Usuario logueado:', response.data);
 
       if (response.data.token) {
         navigate('/');
         localStorage.setItem('token', JSON.stringify(response.data.token));
+        localStorage.setItem('idUser', JSON.stringify(response.data.uid));
       } else {
         const errorMesaage = document.getElementById('error-login');
         errorMesaage?.classList.remove('d-none');
@@ -65,7 +65,7 @@ export const Login = () => {
       }
 
     } catch (error) {
-      console.error('Error al crear usuario:', error);
+      console.error('Usuario no encontrado', error);
     }
   };
 
@@ -80,7 +80,6 @@ export const Login = () => {
     }
   }
 
-  // Registro mientras no se implemente el servicio en backend
   const register: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
