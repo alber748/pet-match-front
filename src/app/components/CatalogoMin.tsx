@@ -11,6 +11,9 @@ import axios from "axios";
 export const CatalogoMin = () => {
   const location = useLocation();
   const [allPerros, setAllPerros] = useState([])
+  const ultimoIndex = allPerros.length - 1;
+  const anteUltimoIndex = ultimoIndex - 2;
+  const ultimosTres = allPerros.slice(anteUltimoIndex, ultimoIndex + 1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +33,9 @@ export const CatalogoMin = () => {
     <>
       <div className="container-catalogo mx-auto mt-3 mb-5 ">
         <div className="row row-cols-1 row-cols-md-3 g-4 mb-5  ">
-          {allPerros.map((perro, index) => (
+          {location.pathname === "/" ? ultimosTres.map((perro, index) => (
+            <CardPerro key={index} perro={perro} />
+          )) : allPerros.map((perro, index) => (
             <CardPerro key={index} perro={perro} />
           ))}
         </div>
