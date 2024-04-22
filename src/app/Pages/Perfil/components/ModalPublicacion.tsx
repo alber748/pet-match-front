@@ -1,12 +1,12 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
-import { Dog } from "../../../models/Dog";
+import { DogSend } from "../../../models/Dog";
 interface ModalPublicacionProps {
     cerrarModal: () => void;
 }
 export const ModalPublicacion = ({ cerrarModal }: ModalPublicacionProps) => {
     const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-    const [formData, setFormData] = useState<Dog>({
+    const [formData, setFormData] = useState<DogSend>({
         id: 0,
         idPersona: '',
         name: '',

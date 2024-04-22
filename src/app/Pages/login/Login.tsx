@@ -51,7 +51,7 @@ export const Login = () => {
 
     try {
 
-      const response = await axios.post('https://pet-match-backend.onrender.com/api/auth/ ', user);
+      const response = await axios.post('https://pet-match-backend.onrender.com/api/auth/', user);
 
       console.log('Usuario logueado:', response.data);
 
