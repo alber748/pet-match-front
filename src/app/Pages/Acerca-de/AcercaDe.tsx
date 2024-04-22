@@ -1,14 +1,13 @@
-import { AcercaDePrimeraSection } from "./components/AcercaDePrimeraSection";
+import { BannerPages } from "../../components/BannerPages";
 import { AcercaDeSegundaSection } from "./components/AcercaDeSegundaSection";
 import { AcercaDeTerceraSection } from "./components/AcercaDeTerceraSection";
 
+import perritoImg from "../../../assets/perrito-home.png"
+import separador from "../../../assets/recorte-seccion.png";
 export const AcercaDe = () => {
   return (
     <div className="about-page">
-      <AcercaDePrimeraSection
-        title="En PetMatch nuestra mision es acercarte a tu nuevo comparñero"
-        description="En PetMatch, nos dedicamos a proporcionar soluciones innovadoras y accesibles que faciliten el acceso a la información y promuevan el aprendizaje y el crecimiento personal. Creemos en hacer que el conocimiento sea más accesible para todos, sin importar su ubicación o situación."
-      />
+      <BannerPages perritoImg={perritoImg} separador={separador} title="ACERCADE NUESTRA MISION" text="lorem" />
       <AcercaDeSegundaSection
         title="Nuestro Equipo"
 

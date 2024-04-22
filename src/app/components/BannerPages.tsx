@@ -8,7 +8,7 @@ interface BannerPagesProps {
   text : string;
 }
 
-export const BannerPages = ({ perritoImg, separador, title, text }: BannerPagesProps) => {
+export const BannerPages = ({ perritoImg, title, text }: BannerPagesProps) => {
   return (
     <>
       <div className="banner-container z-0">
@@ -26,11 +26,7 @@ export const BannerPages = ({ perritoImg, separador, title, text }: BannerPagesP
           </div>
         </div>
       </div>
-      {
-        separador ? (<div className="separador">
-        <img src={ separador } alt="" className="img-separate" />
-      </div>) : (null)
-      }
+     
     </>
   );
 };
