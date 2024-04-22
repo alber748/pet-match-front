@@ -38,8 +38,6 @@ export const ModalPublicacion = ({ cerrarModal }: ModalPublicacionProps) => {
             formDataToSend.append('files', file);
         });
         const uId = localStorage.getItem('idUser');
-
-
         if (uId !== null) {
             formDataToSend.append('idPersona', uId);
         } else {

@@ -6,11 +6,11 @@ import corazon from "../../assets/corazon.png"
 
 interface Perro {
     id: number,
-    nombre: string;
+    name: string;
     edad: number;
-    raza: string;
+    peso: string;
     descripcion: string;
-    fotos: string[];
+    files: string[];
 }
 
 interface ModalPerroProps {
@@ -33,13 +33,13 @@ export const ModalPerro = ({ perro, modal, cerrarModal }: ModalPerroProps) => {
                                 </div>
                                 <div className="carousel-inner z-1">
                                     <div className="carousel-item active">
-                                        <img src={perro.fotos[0]} className="d-block img-modal" alt="..." />
+                                        <img src={perro.files[0]} className="d-block img-modal" alt="..." />
                                     </div>
                                     <div className="carousel-item">
-                                        <img src={perro.fotos[1]} className="d-block  img-modal" alt="..." />
+                                        <img src={perro.files[1]} className="d-block  img-modal" alt="..." />
                                     </div>
                                     <div className="carousel-item">
-                                        <img src={perro.fotos[2]} className="d-block  img-modal" alt="..." />
+                                        <img src={perro.files[2]} className="d-block  img-modal" alt="..." />
                                     </div>
                                 </div>
                                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -54,7 +54,7 @@ export const ModalPerro = ({ perro, modal, cerrarModal }: ModalPerroProps) => {
                             <div className="modal-details bg-modal-details d-flex flex-column gap-3 p-2 ms-5">
                                 <div className="d-flex info-modal ps-2  align-items-center bg-p-details">
                                     <img src={collar} alt="" className="icon-modal" />
-                                    <p className="my-0 ms-3">{perro.nombre}</p>
+                                    <p className="my-0 ms-3">{perro.name}</p>
                                 </div>
                                 <div className="d-flex info-modal ps-2 align-items-center bg-p-details">
                                     <img src={huella} alt="" className="icon-modal " />
@@ -62,7 +62,7 @@ export const ModalPerro = ({ perro, modal, cerrarModal }: ModalPerroProps) => {
                                 </div>
                                 <div className="d-flex info-modal ps-2 align-items-center bg-p-details">
                                     <img src={silueta} alt="" className="icon-modal " />
-                                    <p className="my-0 ms-3">{perro.raza}</p>
+                                    <p className="my-0 ms-3">{perro.peso}</p>
                                 </div>
                                 <div className="d-flex info-modal px-2 align-items-center bg-p-details">
                                     <img src={corazon} alt="" className="icon-modal" />
