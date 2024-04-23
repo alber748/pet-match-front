@@ -16,8 +16,8 @@ export const Home = () => {
       />
       <div className='d-flex flex-column align-items-center  bg-catalogo segunda-home'>
         <img src={separador} alt="" className="w-100 img-sep-top mb-4 " />
-        <h2 className='title-section p-2 m-3'>Conéctate al instante con tu nuevo mejor amigo peludo</h2>
-        <p className='text-center p-2 m-3 txt-segunda-seccion'>
+        <h2 className='title-section p-2 mt-3'>Conéctate al instante con tu nuevo mejor amigo peludo</h2>
+        <p className='text-center p-2 mb-5 txt-segunda-seccion w-50'>
           Conéctate al instante con las personas que comparten perritos disponibles para adopción y encuentra a tu nuevo compañero de vida de forma rápida y sencilla
         </p>
         <CatalogoMin />

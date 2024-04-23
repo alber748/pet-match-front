@@ -44,10 +44,10 @@ export const ModalPerro = ({ perro, modal, cerrarModal }: ModalPerroProps) => {
                                     <span className="visually-hidden">Next</span>
                                 </button>
                             </div>
-                            <div className="modal-details bg-modal-details d-flex flex-column gap-3 p-2 ms-5">
+                            <div className="modal-details bg-modal-details d-flex flex-column gap-3 p-2 ms-5 w-50">
                                 <div className="d-flex info-modal ps-2  align-items-center bg-p-details">
                                     <img src={collar} alt="" className="icon-modal" />
-                                    <p className="my-0 ms-3">{perro.name}</p>
+                                    <p className="my-0 ms-3">{perro.name.charAt(0).toUpperCase() + perro.name.slice(1).toLowerCase()}</p>
                                 </div>
                                 <div className="d-flex info-modal ps-2 align-items-center bg-p-details">
                                     <img src={huella} alt="" className="icon-modal " />
@@ -55,7 +55,7 @@ export const ModalPerro = ({ perro, modal, cerrarModal }: ModalPerroProps) => {
                                 </div>
                                 <div className="d-flex info-modal ps-2 align-items-center bg-p-details">
                                     <img src={silueta} alt="" className="icon-modal " />
-                                    <p className="my-0 ms-3">{perro.peso}</p>
+                                    <p className="my-0 ms-3">{perro.peso} kg</p>
                                 </div>
                                 <div className="d-flex info-modal px-2 align-items-center bg-p-details">
                                     <img src={corazon} alt="" className="icon-modal" />

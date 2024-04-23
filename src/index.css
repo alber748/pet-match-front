@@ -266,7 +266,7 @@ footer {
   border-radius: 30px;
 
   & p {
-    font-size: 19px;
+    font-size: 17px;
     padding: 3px;
     max-height: 20px;
     font-weight: 600;
@@ -339,10 +339,10 @@ footer {
   overflow: hidden;
 
   & div {
-    background-color: #755b34fd;
+    background-color: #ebab58d7;
 
     & div {
-      background-color: #e6e3dfe1;
+      background-color: #f3f3f3e1;
 
     }
   }
