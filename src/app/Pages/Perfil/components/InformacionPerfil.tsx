@@ -36,7 +36,7 @@ export const InformacionPerfil = () => {
         if (value && mappings[value]) {
             return mappings[value];
         }
-        return null; 
+        return null;
     };
 
     const valuesKindRol = () => {
@@ -56,7 +56,7 @@ export const InformacionPerfil = () => {
         };
         return getMappedValue(infoUser.entidad, entidadMappings);
     };
-
+    console.log(infoUser.name)
     return (
         <div className=" d-flex justify-content-center my-5 p-3 container-info-perfil w-100">
             <div className="h-100 mt-5  cont-img">

@@ -18,13 +18,13 @@ interface SectionProps {
 
 export const AcercaDePrimeraSection: React.FC<SectionProps> = ({ title, description }) => {
     return (
-        <div className="container-xxl my-5 custom-height-1400 bg-line">
-            <div className="w-100 position-relative">
-                <div className='acercaDe-content '>
-                    <h1 >{title}</h1>
-                    <p>{description}</p>
+        <div className="container-xxl  custom-height-1400 bg-line">
+            <div className="w-100 mt-5 position-relative">
+                <div className='acercaDe-content ms-4 '>
+                    <h1 >En <span>PetMatch</span> {title}</h1>
+                    <p className='mt-4'>En <span>PetMatch</span>{description}</p>
                 </div>
-                <div className=' container-xxl  position-absolute top-0 p-0 '>
+                <div className=' container-xxl position-absolute p-0 custom-height-1400 top '>
                     <div className="cont-img-item">
                         <img src={perro1} className="img-item" alt={title} />
                     </div>

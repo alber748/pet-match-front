@@ -58,6 +58,7 @@ export const Login = () => {
       if (response.data.token) {
         localStorage.setItem('token', JSON.stringify(response.data.token));
         localStorage.setItem('idUser', JSON.stringify(response.data.uid));
+        console.log(response.data)
         if (location.pathname === "/login") {
           navigate('/');
         } else {

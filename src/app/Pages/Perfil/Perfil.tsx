@@ -12,13 +12,12 @@ export const Perfil = () => {
   const token = localStorage.getItem("token")
 
   const handleCloseModal = async () => {
-    await navigate("/login")
     setShowModal(false);
   };
 
   return (
     <div id="container-perfil" className="container-xxl">
-      {token && !showModal ?
+      {token ?
         <>
           <div className="mx-auto w-75">
             <InformacionPerfil />
