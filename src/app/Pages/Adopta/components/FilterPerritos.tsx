@@ -3,7 +3,7 @@
 export const FilterPerritos = () => {
   return (
     <div className="mb-5">
-      <div className="container-xxl d-flex justify-content-start gap-5 pb-5 container-nav-adopta">
+      <div className="container-xxl d-flex justify-content-start align-items-center gap-5 pb-5 container-nav-adopta">
         <span>Filtrar tu búsqueda: </span>
         <select name="" id="" className="p-2">
           <option value="" disabled>Seleccione Tamaño</option>

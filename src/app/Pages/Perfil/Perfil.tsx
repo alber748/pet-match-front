@@ -3,12 +3,11 @@ import { useState } from "react"
 import { InfoAdopciones } from "./components/InfoAdopciones"
 
 import { InformacionPerfil } from "./components/InformacionPerfil"
-import { useNavigate } from "react-router-dom";
+
 
 
 export const Perfil = () => {
   const [showModal, setShowModal] = useState(true);
-  const navigate = useNavigate()
   const token = localStorage.getItem("token")
 
   const handleCloseModal = async () => {

@@ -18,8 +18,10 @@ interface SectionProps {
 
 export const AcercaDePrimeraSection: React.FC<SectionProps> = ({ title, description }) => {
     return (
-        <div className="container-xxl  custom-height-1400 bg-line">
-            <div className="w-100 mt-5 position-relative">
+        <div className="container-xxl  custom-height-1400 bg-line overflow-hidden">
+            <div className="w-100 mt-5 position-relative ">
+                <div className='circle position-absolute z-1'>
+                </div>
                 <div className='acercaDe-content ms-4 '>
                     <h1 >En <span>PetMatch</span> {title}</h1>
                     <p className='mt-4'>En <span>PetMatch</span>{description}</p>

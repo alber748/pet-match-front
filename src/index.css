@@ -4,6 +4,8 @@ body {
   font-style: normal
 }
 
+/* header */
+
 header {
   background-color: #fbfbfb;
   text-align: center;
@@ -34,6 +36,7 @@ header {
 
 }
 
+/* header */
 footer {
   background-color: #333;
   color: white;
@@ -41,6 +44,7 @@ footer {
   padding: 1em;
 }
 
+/* home */
 .home {
   background-color: #fbfbfb;
   display: flex;
@@ -102,6 +106,16 @@ footer {
   background-attachment: fixed;
 }
 
+.circle {
+  width: 500px;
+  height: 500px;
+  background-color: #fcf64a42;
+  top: -15px;
+  left: -150px;
+  border-radius: 50%;
+  position: fixed;
+}
+
 .separador {
   max-height: 200px;
   height: 200px;
@@ -138,7 +152,7 @@ footer {
 }
 
 .tercera-data {
-  
+
   & span {
     display: inline-block;
     width: 60px;
@@ -150,10 +164,12 @@ footer {
     border-radius: 50%;
     color: white;
   }
-  & h3{
+
+  & h3 {
     font-weight: 800;
   }
-  & p{
+
+  & p {
     font-size: 19px;
     max-width: 80%;
   }
@@ -393,18 +409,40 @@ footer {
 }
 
 .container-nav-adopta {
-  & select {
+  & span {
+    font-size: 17px;
+    font-weight: 600;
+  }
 
+  & select {
     min-width: 190px;
     border: none;
     border-bottom: 1px solid rgb(207, 143, 5);
   }
 
-  & input {
+  & select option:not(:disabled):hover {
+    background-color: lightblue !important;
 
+  }
+
+  & select:focus-visible {
+    border: 2px solid rgb(207, 143, 5) !important;
+    border-radius: 5px;
+    outline: #bb7b04;
+
+  }
+
+  & input {
     min-width: 190px;
     border: none;
     border-bottom: 1px solid rgb(241, 227, 31);
+  }
+
+  & input:focus-visible {
+    border: 2px solid rgb(241, 227, 31) !important;
+    border-radius: 5px;
+    outline: #bb7b04;
+
   }
 }
 
@@ -413,7 +451,9 @@ footer {
 }
 
 .acercaDe-content {
+  position: relative;
   max-width: 90%;
+  z-index: 100;
 
   & h1 {
     font-size: 47px;
@@ -461,6 +501,7 @@ footer {
 
 .top {
   top: 0;
+  z-index: 100;
 }
 
 
@@ -655,6 +696,7 @@ p .cursor-pointer:hover {
 .container-info-perfil {
   border: 1px solid #cecdcd;
   border-radius: 15px;
+  background-color: rgb(182, 182, 182);
 
   & .cont-img {
     border-radius: 150px;
@@ -708,7 +750,16 @@ p .cursor-pointer:hover {
     & ul {
       list-style: none;
       font-size: 20px;
+
+      & li {
+        border-radius: 15px;
+      }
+
+      & li:hover {
+        background-color: #bb7b0448;
+      }
     }
+
   }
 
   & .form-edit-perfil {
@@ -807,6 +858,20 @@ p .cursor-pointer:hover {
 .form-publicacion {
   & input {
     border-radius: 15px;
+  }
+}
+
+.banner-info {
+  & h1 {
+    font-size: 47px;
+    font-weight: 700;
+  }
+
+  & p {
+    text-align: left;
+    font-weight: 500;
+    color: #707070;
+    font-size: 16px;
   }
 }
 
@@ -980,6 +1045,7 @@ p .cursor-pointer:hover {
 
   }
 }
+
 
 @media (min-width: 768px) {
   .md-hidden {

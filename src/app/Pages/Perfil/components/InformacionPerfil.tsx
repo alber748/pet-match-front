@@ -16,7 +16,7 @@ export const InformacionPerfil = () => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            const user = localStorage.getItem('users');
+            const user = localStorage.getItem('user');
             if (user) {
                 const arregloUsuarios = JSON.parse(user);
                 if (Array.isArray(arregloUsuarios) && arregloUsuarios.length > 0) {
