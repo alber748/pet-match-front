@@ -28,6 +28,7 @@ export const CatalogoMin = () => {
 
     fetchData();
   }, [])
+
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
@@ -42,14 +43,15 @@ export const CatalogoMin = () => {
     const ultimoIndex = allPerros.length - 1;
     const anteUltimoIndex = ultimoIndex - 2;
     const ultimosDos = allPerros.slice(anteUltimoIndex, ultimoIndex);
-    const ultimosTres = allPerros.slice(anteUltimoIndex, ultimoIndex + 1);
-    return width && width > 825 ? ultimosTres : ultimosDos;
+    const ultimosCuatro = allPerros.slice(anteUltimoIndex - 1, ultimoIndex + 1);
+    console.log(ultimosCuatro)
+    return width && width > 825 ? ultimosCuatro : ultimosDos;
   };
 
   return (
     <>
       <div className="container-catalogo mx-auto mt-3 mb-5 ">
-        <div className={`row ${width && width > 825 ? "row-cols-md-3" : "row-cols-1"} g-4 mb-5`} >
+        <div className={`row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4  mb-5 w-100`} >
           {location.pathname === "/" ? (cantCards().map((perro, index) => (
             <CardPerro key={index} perro={perro} />
           ))) : allPerros.map((perro, index) => (

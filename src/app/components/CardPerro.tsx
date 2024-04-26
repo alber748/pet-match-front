@@ -40,8 +40,8 @@ export const CardPerro = ({ perro }: CardPerroProps) => {
     }
   }, []);
   return (
-    <div>
-      <div key={perro.id} className="col z-3 ">
+    <>
+      <div key={perro.id} className="col z-3  p-0">
         <div className="d-flex justify-content-center gap-3 position-relative conatiner-card">
           <img ref={imagenRef} src={perro.files[0]} alt={perro.name} />
           <div className=' d-flex justify-content-between perro-nombre px-3'>
@@ -54,7 +54,7 @@ export const CardPerro = ({ perro }: CardPerroProps) => {
 
       </div>
       {modalVisible ? <ModalPerro perro={perro} modal={modalVisible} cerrarModal={cerrarModal} /> : ""}
-    </div>
+    </>
 
   )
 }

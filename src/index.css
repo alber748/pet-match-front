@@ -871,7 +871,7 @@ p .cursor-pointer:hover {
     text-align: left;
     font-weight: 500;
     color: #707070;
-    font-size: 16px;
+    font-size: 22px;
   }
 }
 
@@ -991,6 +991,14 @@ p .cursor-pointer:hover {
   .cont-img-item:nth-child(7) {
     top: 350px;
     right: 420px;
+  }
+}
+
+@media (max-width: 1065px) {
+
+  .info-banner {
+    align-items: center;
+    justify-content: center;
   }
 }
 
