@@ -31,7 +31,7 @@ export const InfoAdopciones = ({ title }: Iadopciones) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/api/dogs/get?idUser=` + idUser);
+                const response = await axios.get(`https://pet-match-backend.onrender.com/api/dogs/get?idUser=` + idUser);
                 console.log('Datos obtenidos:', response.data.dogs);
                 setData(response.data.dogs);
             } catch (error) {

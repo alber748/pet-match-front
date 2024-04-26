@@ -37,7 +37,7 @@ export const ModalPublicacion = ({ cerrarModal }: ModalPublicacionProps) => {
         selectedFiles.forEach((file) => {
             formDataToSend.append('files', file);
         });
-        const uId = localStorage.getItem('idUser');
+        const uId = JSON.parse(localStorage.getItem('idUser') || '');
         if (uId !== null) {
             formDataToSend.append('idPersona', uId);
         } else {
