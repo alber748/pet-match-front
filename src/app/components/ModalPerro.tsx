@@ -4,6 +4,9 @@ import huella from "../../assets/pawprint_1076928.png"
 import silueta from "../../assets/silueta_perro.png"
 import corazon from "../../assets/corazon.png"
 import { Dog } from "../models/Dog";
+import axios from "axios";
+import { useState } from "react";
+
 
 
 interface ModalPerroProps {
@@ -11,9 +14,46 @@ interface ModalPerroProps {
     modal: boolean;
     cerrarModal: () => void;
 }
+interface NewPostulacion {
+    idUser: string | null,
+    idSitter: string,
+    idPerro: number
+}
 export const ModalPerro = ({ perro, modal, cerrarModal }: ModalPerroProps) => {
+    const [postulacion, setPostulacion] = useState<NewPostulacion>({
+        idUser: '',
+        idSitter: '',
+        idPerro: 0
+    })
+    const newPostulacion = async () => {
+        try {
+            const response = await axios.post("https://pet-match-backend.onrender.com/api/postulaciones/new", postulacion)
+            console.log(response)
+        } catch (error) {
+            console.error('No se pudo completar la postulación', error);
+        }
+    }
+
+    const handleAdoptar = () => {
+        const idUserFromLocalStorage = localStorage.getItem('idUser');
+        let idUser: string | null = null;
+        if (idUserFromLocalStorage) {
+            try {
+                idUser = JSON.parse(idUserFromLocalStorage);
+                setPostulacion({
+                    ...postulacion,
+                    idUser: idUser,
+                    idSitter: perro.idPersona,
+                    idPerro: perro._id
+                })
+                newPostulacion()
+            } catch (error) {
+                console.error('Error al analizar el valor de idUser en localStorage:', error);
+            }
+        }
+    }
     return (
-        <div className="bg-modal">
+        <div className="bg-modal w-100">
             <div className={`modal  ${modal ? 'show' : ''}`} tabIndex={-1} style={{ display: modal ? 'block' : 'none' }}>
                 <div className="modal-dialog  modal-lg mi-modal-personalizado">
                     <div className="modal-content px-3 pb-3">
@@ -64,7 +104,7 @@ export const ModalPerro = ({ perro, modal, cerrarModal }: ModalPerroProps) => {
                             </div>
                         </div>
                         <div className="modal-footer border-radius">
-                            <button type="button" className="btn-adoptar p-2" >
+                            <button type="button" className="btn-adoptar p-2" onClick={handleAdoptar} >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-heart me-2" viewBox="0 0 16 16">
                                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
                                 </svg>

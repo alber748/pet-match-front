@@ -10,7 +10,7 @@ export interface DogSend {
 }
 
 export interface Dog {
-      id: number;
+      _id: number;
       idPersona : string;
       name: string;
       edad: string;

@@ -44,20 +44,25 @@ export const CatalogoMin = () => {
     const anteUltimoIndex = ultimoIndex - 2;
     const ultimosDos = allPerros.slice(anteUltimoIndex, ultimoIndex);
     const ultimosCuatro = allPerros.slice(anteUltimoIndex - 1, ultimoIndex + 1);
-    console.log(ultimosCuatro)
     return width && width > 825 ? ultimosCuatro : ultimosDos;
   };
 
   return (
     <>
       <div className="container-catalogo mx-auto mt-3 mb-5 ">
-        <div className={`row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4  mb-5 w-100`} >
-          {location.pathname === "/" ? (cantCards().map((perro, index) => (
-            <CardPerro key={index} perro={perro} />
-          ))) : allPerros.map((perro, index) => (
-            <CardPerro key={index} perro={perro} />
-          ))}
-        </div>
+        {location.pathname === "/" ?
+          <div className={`row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4  mb-5 w-100`}>
+            {(cantCards().map((perro, index) => (
+              <CardPerro key={index} perro={perro} />
+            )))}
+          </div> :
+          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-gap-4 ">
+            {
+              allPerros.map((perro, index) => (
+                <CardPerro key={index} perro={perro} />
+              ))
+            }
+          </div>}
       </div>
       {location.pathname !== "/adopta" ? (
         <div className="w-100 position-relative d-flex flex-column">
