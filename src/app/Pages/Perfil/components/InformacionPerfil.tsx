@@ -3,7 +3,10 @@ import { NavLink } from "react-router-dom"
 import logo from "../../../../assets/logo-user.png"
 import { useState, useEffect } from 'react';
 
+import { ModalPublicacion } from "./ModalPublicacion";
+
 export const InformacionPerfil = () => {
+    const [isModal, setIsModal] = useState(false)
     const [infoUser, setInfoUser] = useState({
         email: "",
         name: "",
@@ -56,11 +59,13 @@ export const InformacionPerfil = () => {
         };
         return getMappedValue(infoUser.entidad, entidadMappings);
     };
-    console.log(infoUser.name)
+    const handleModal = () => {
+        setIsModal(prevState => !prevState)
+    }
     return (
         <div className=" d-flex justify-content-center my-5 p-3 container-info-perfil w-100">
             <div className="h-100 mt-5  cont-img">
-                <img src={logo} alt="" />
+                <img src={logo} alt="" onClick={handleModal} />
             </div>
             <div className="d-flex flex-column align-items-center w-75 position-relative info-perfil">
                 <div className="position-absolute top-0 end-0 ">
@@ -79,6 +84,7 @@ export const InformacionPerfil = () => {
                     <p>Tipo de participacion: <span>{valuesKindRol()}</span></p>
                 </div>
             </div>
+            {isModal ? <ModalPublicacion cerrarModal={handleModal} location="fotoPerfil" /> : ""}
         </div>
     )
 }

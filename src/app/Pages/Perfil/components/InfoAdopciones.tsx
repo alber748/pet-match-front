@@ -26,7 +26,7 @@ export const InfoAdopciones = ({ title }: Iadopciones) => {
     };
 
     const [data, setData] = useState([] as Dog[]);
-    const [idUser, setIdUser] = useState(JSON.parse(localStorage.getItem('idUser') || '') || '');
+    const idUser = JSON.parse(localStorage.getItem('idUser') || '') || '';
 
     useEffect(() => {
         const fetchData = async () => {
@@ -81,7 +81,7 @@ export const InfoAdopciones = ({ title }: Iadopciones) => {
             </div>
             <div className={`d-flex align-items-center  p-3 gap-5  ${!mostrasPerros ? "overflow-hidden" : "flex-wrap"}`}>
                 {rendercards()}
-                {modalFormAddPerros ? <ModalPublicacion cerrarModal={handleModal} /> : ""}
+                {modalFormAddPerros ? <ModalPublicacion cerrarModal={handleModal} location={"publicar"} /> : ""}
             </div>
         </div >
     );

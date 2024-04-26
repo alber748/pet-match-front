@@ -3,8 +3,9 @@ import axios from "axios";
 import { DogSend } from "../../../models/Dog";
 interface ModalPublicacionProps {
     cerrarModal: () => void;
+    location: string
 }
-export const ModalPublicacion = ({ cerrarModal }: ModalPublicacionProps) => {
+export const ModalPublicacion = ({ cerrarModal, location }: ModalPublicacionProps) => {
     const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
     const [formData, setFormData] = useState<DogSend>({
         id: 0,
@@ -52,10 +53,12 @@ export const ModalPublicacion = ({ cerrarModal }: ModalPublicacionProps) => {
         console.log('Formulario a enviar:', formDataToSend);
         try {
             const response = await axios.post('https://pet-match-backend.onrender.com/api/dogs', formDataToSend);
+            console.log(response)
         } catch (error) {
             console.error('Error al enviar archivos:', error);
         }
     };
+    console.log(location)
     return (
 
         <div className="bg-modal d-flex justify-content-center align-items-center">
@@ -63,35 +66,49 @@ export const ModalPublicacion = ({ cerrarModal }: ModalPublicacionProps) => {
                 <div className="modal-dialog  modal-lg mi-modal-personalizado">
                     <div className="modal-content px-3 pb-3">
                         <div className="modal-body d-flex flex-column  py-4 px-5 my-3 border-radius">
-                            <h1>Publicar mascota</h1>
-                            <form className="d-flex flex-column align-items-center form-publicacion gap-4 mt-4" onSubmit={handleSubmit}>
-                                <div>
-                                    <input type="file" onChange={handleFileChange} />
-                                    <input type="file" onChange={handleFileChange} />
-                                    <input type="file" onChange={handleFileChange} />
-                                </div>
-                                <div className="row w-100">
-                                    <div className="col-6 p-4 d-flex flex-column gap-3 align-items-center">
-                                        <input className="ps-2 w-75" type="text" name="name" placeholder="Nombre" onChange={handleChange} />
-                                        <input className="ps-2 w-75" type="text" name="edad" placeholder="Edad" onChange={handleChange} />
-                                        <input className="ps-2 w-75" type="text" name="peso" placeholder="Peso" onChange={handleChange} />
-                                    </div>
-                                    <div className="col-6 p-4 d-flex flex-column gap-3 align-items-center">
-                                        <input className="ps-2 w-75" type="text" name="descripcion" placeholder="Descripción" onChange={handleChange} />
-                                        <input className="ps-2 w-75" type="text" name="situacion" placeholder="Situación" onChange={handleChange} />
-                                    </div>
+                            {location === "publicar" ?
+                                <>
+                                    <h1>Publicar Mascota</h1>
+                                    <form className="d-flex flex-column align-items-center form-publicacion gap-4 mt-4" onSubmit={handleSubmit}>
+                                        <div>
+                                            <input type="file" onChange={handleFileChange} />
+                                            <input type="file" onChange={handleFileChange} />
+                                            <input type="file" onChange={handleFileChange} />
+                                        </div>
+                                        <div className="row w-100">
+                                            <div className="col-6 p-4 d-flex flex-column gap-3 align-items-center">
+                                                <input className="ps-2 w-75" type="text" name="name" placeholder="Nombre" onChange={handleChange} />
+                                                <input className="ps-2 w-75" type="text" name="edad" placeholder="Edad" onChange={handleChange} />
+                                                <input className="ps-2 w-75" type="text" name="peso" placeholder="Peso" onChange={handleChange} />
+                                            </div>
+                                            <div className="col-6 p-4 d-flex flex-column gap-3 align-items-center">
+                                                <input className="ps-2 w-75" type="text" name="descripcion" placeholder="Descripción" onChange={handleChange} />
+                                                <input className="ps-2 w-75" type="text" name="situacion" placeholder="Situación" onChange={handleChange} />
+                                            </div>
 
-                                </div>
-                                <div className="d-flex justify-content-end gap-2">
-                                    <button className="btn-adoptar p-2" type="submit">Publicar</button>
-                                    <button className="btn-adoptar p-2" onClick={cerrarModal}>cerrar</button>
-                                </div>
-                            </form>
+                                        </div>
+                                        <div className="d-flex justify-content-end gap-2">
+                                            <button className="btn-adoptar p-2" type="submit">Publicar</button>
+                                            <button className="btn-adoptar p-2" onClick={cerrarModal}>cerrar</button>
+                                        </div>
+                                    </form>
+
+                                </> :
+                                <form className="d-flex flex-column align-items-center form-publicacion gap-4 mt-4" onSubmit={handleSubmit}>
+                                    <h4>Cambiar foto de perfil</h4>
+                                    <div className="my-3">
+                                        <input type="file" onChange={handleFileChange} />
+                                    </div>
+                                    <div className="d-flex justify-content-end gap-2">
+                                        <button className="btn-adoptar p-2" type="submit">Publicar</button>
+                                        <button className="btn-adoptar p-2" onClick={cerrarModal}>cerrar</button>
+                                    </div>
+                                </form>}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
 
 
     );
