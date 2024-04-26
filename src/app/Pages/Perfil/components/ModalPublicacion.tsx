@@ -7,6 +7,7 @@ interface ModalPublicacionProps {
 }
 export const ModalPublicacion = ({ cerrarModal, location }: ModalPublicacionProps) => {
     const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [formData, setFormData] = useState<DogSend>({
         id: 0,
         idPersona: '',
@@ -25,12 +26,49 @@ export const ModalPublicacion = ({ cerrarModal, location }: ModalPublicacionProp
         }
     };
 
+    const handleFileChangePerfil = (event: ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files[0]) {
+            const file = event.target.files[0];
+            setSelectedFile(file);
+        }
+    };
+    
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
         });
     };
+
+    const handleSubmitPerfil = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const formDataToSend = new FormData();
+        
+        if (selectedFile) {
+            formDataToSend.append('file', selectedFile);
+        }
+
+        console.log("selectedFile", selectedFile)
+
+        const uId = JSON.parse(localStorage.getItem('idUser') || '');
+        if (uId !== null) {
+            formDataToSend.append('idPersona', uId);
+        } else {
+            console.error('No se encontró ningún ID de usuario en el localStorage');
+        }
+        
+        console.log('Formulario a enviar:', formDataToSend);
+        try {
+            const response = await axios.post('https://pet-match-backend.onrender.com/api/user/add-photo', formDataToSend);
+            console.log(response)
+        } catch (error) {
+            console.error('Error al enviar archivos:', error);
+        }
+    };
+
+
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -93,10 +131,10 @@ export const ModalPublicacion = ({ cerrarModal, location }: ModalPublicacionProp
                                     </form>
 
                                 </> :
-                                <form className="d-flex flex-column align-items-center form-publicacion gap-4 mt-4" onSubmit={handleSubmit}>
+                                <form className="d-flex flex-column align-items-center form-publicacion gap-4 mt-4" onSubmit={handleSubmitPerfil}>
                                     <h4>Cambiar foto de perfil</h4>
                                     <div className="my-3">
-                                        <input type="file" onChange={handleFileChange} />
+                                        <input type="file" onChange={handleFileChangePerfil} />
                                     </div>
                                     <div className="d-flex justify-content-end gap-2">
                                         <button className="btn-adoptar p-2" type="submit">Publicar</button>
