@@ -61,7 +61,7 @@ export const ModalPublicacion = ({ cerrarModal, location }: ModalPublicacionProp
         
         console.log('Formulario a enviar:', formDataToSend);
         try {
-            const response = await axios.post('http://localhost:4000/api/user/add-photo', formDataToSend);
+            const response = await axios.post('https://pet-match-backend.onrender.com/api/user/add-photo', formDataToSend);
             console.log(response)
         } catch (error) {
             console.error('Error al enviar archivos:', error);
