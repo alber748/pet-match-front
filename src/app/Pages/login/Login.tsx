@@ -14,7 +14,7 @@ interface UserLogin {
 export const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const navigate = useNavigate();
-  const location = useLocation()
+  const locationHook = useLocation()
   const [formData, setFormData] = useState<User>({
     email: '',
     password: '',
@@ -54,12 +54,12 @@ export const Login = () => {
       const response = await axios.post('https://pet-match-backend.onrender.com/api/auth/', user);
 
       console.log('Usuario logueado:', response.data);
-
+      const { email, entidad, kindRol, lastname, name, location, phone } = response.data
       if (response.data.token) {
         localStorage.setItem('token', JSON.stringify(response.data.token));
         localStorage.setItem('idUser', JSON.stringify(response.data.uid));
-        console.log(response.data)
-        if (location.pathname === "/login") {
+        localStorage.setItem('user', JSON.stringify([{ email, entidad, kindRol, lastname, name, location, phone }]))
+        if (locationHook.pathname === "/login") {
           navigate('/');
         } else {
           window.history.back()
