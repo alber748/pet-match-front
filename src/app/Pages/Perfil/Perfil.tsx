@@ -3,16 +3,23 @@ import { useState } from "react"
 import { InfoAdopciones } from "./components/InfoAdopciones"
 
 import { InformacionPerfil } from "./components/InformacionPerfil"
+import { useNavigate } from "react-router-dom";
+
 
 
 
 export const Perfil = () => {
   const [showModal, setShowModal] = useState(true);
   const token = localStorage.getItem("token")
+  const navigate = useNavigate()
 
   const handleCloseModal = async () => {
     setShowModal(false);
   };
+
+  const handleInicioSesion = () => {
+    navigate("/login")
+  }
 
   return (
     <div id="container-perfil" className="container-xxl">
@@ -43,7 +50,7 @@ export const Perfil = () => {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>Cerrar</button>
-                <button className="btn btn-secondary" onClick={handleCloseModal}>Inicia Sesion</button>
+                <button className="btn btn-secondary" onClick={handleInicioSesion}>Inicia Sesion</button>
               </div>
             </div>
           </div>
