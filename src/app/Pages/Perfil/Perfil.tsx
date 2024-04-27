@@ -1,5 +1,5 @@
 //Components
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { InfoAdopciones } from "./components/InfoAdopciones"
 
 import { InformacionPerfil } from "./components/InformacionPerfil"
@@ -34,12 +34,15 @@ export const Perfil = () => {
             <div className="mb-5">
               <InfoAdopciones
                 title="Tus postulaciones para adoptar"
+                prop="postulacion"
               />
             </div>
             :
             <div className="mb-5">
               <InfoAdopciones
                 title="Tus publicaciones de adopción"
+                prop="publicacion"
+
               />
             </div>
           }

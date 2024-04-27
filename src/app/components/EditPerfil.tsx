@@ -21,6 +21,7 @@ export const EditPerfil = () => {
         newPassword: '',
         oldPassword: ''
     })
+
     const [infoUser, setInfoUser] = useState<UserEditInfo>({
         email: "",
         name: "",
@@ -91,6 +92,26 @@ export const EditPerfil = () => {
         }
     }
 
+    const deleteAccount: React.FormEventHandler<HTMLFormElement> = async (event) => {
+        event.preventDefault()
+        const uId = JSON.parse(localStorage.getItem('idUser') || '');
+        console.log(uId)
+        const dataUser = {
+            id: uId,
+            kindRol: infoUser.kindRol
+        }
+        try {
+            const response = await axios.delete("https://pet-match-backend.onrender.com/api/user/delete", {
+                data: dataUser 
+            })
+            window.alert("cuenta eliminada")
+            localStorage.clear()
+            navigate("/")
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
@@ -116,7 +137,7 @@ export const EditPerfil = () => {
                     <ul className="d-flex flex-column gap-3 cursor-pointer">
                         <li className="p-3 " onClick={handleReturn} data-option="personal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" className="bi bi-arrow-bar-left me-3" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5" />
+                                <path fillRule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5" />
                             </svg>
                             Volver
                         </li>
@@ -273,8 +294,8 @@ export const EditPerfil = () => {
                         </div>
                         :
                         <div className="col-9">
-                            <h3 className="ms-2">Cuenta</h3>
-                            <form action="" className=" mt-4 ps-5 form-edit-perfil">
+                            <h3 className="ms-2" >Cuenta</h3>
+                            <form onSubmit={deleteAccount} className=" mt-4 ps-5 form-edit-perfil">
                                 <div className="cuenta-top-section p-2">
                                     <span >¿Estás seguro que deseas cerrar tu cuenta?</span>
                                     <p className=" mt-2 mb-0">Si cierras tu cuenta en PetMatch se eliminarán tus publicaciones y también tus postulaciones .</p>

@@ -8,11 +8,12 @@ import { CardInfo } from "../components/CardInfo"
 
 interface Iadopciones {
     title: string;
+    prop: string;
     agregarPerros?: () => void;
 }
 
 
-export const InfoAdopciones = ({ title }: Iadopciones) => {
+export const InfoAdopciones = ({ title, prop }: Iadopciones) => {
     const [mostrarPerros, setMostrarPerros] = useState(false);
     const [modalFormAddPerros, setModalFormAddPerros] = useState(false)
 
@@ -30,9 +31,16 @@ export const InfoAdopciones = ({ title }: Iadopciones) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://pet-match-backend.onrender.com/api/postulaciones/get-by-postulant?idUser=` + idUser);
-                const dataP = response.data.postulaciones
-                setData(dataP);
+                if (prop === "postulacion") {
+                    const response = await axios.get(`https://pet-match-backend.onrender.com/api/postulaciones/get-by-postulant?idUser=` + idUser);
+                    const dataP = response.data.postulaciones
+                    setData(dataP);
+                }
+                // else {
+                //     const response = await axios.get(`https://pet-match-backend.onrender.com/api/dogs/get?idUser=` + idUser);
+                //     const dataP = response.data.dogs
+                //     setData(dataP)
+                // }
             } catch (error) {
                 console.error('Error al obtener datos:', error);
             }

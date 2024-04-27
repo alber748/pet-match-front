@@ -2,8 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 
 interface CardInfo {
-    estado: string,
-    id: string,
+    estado?: string,
+    id?: string,
     perro: {
         descripcion: string,
         edad: string,
@@ -11,7 +11,7 @@ interface CardInfo {
         name: string,
         peso: string,
         situacion: string,
-        fotos: string[]
+        fotos: string[];
     },
     usuario: {
         email: string,

@@ -100,7 +100,6 @@ export const Login = () => {
   const handleLogin = (): void => {
     setIsLogin((prevIsLogin) => !prevIsLogin);
   };
-  console.log(formData)
   return (
     <div className="container-login d-flex justify-content-center align-items-center bg-huellas z-index-0">
       {isLogin ? (
