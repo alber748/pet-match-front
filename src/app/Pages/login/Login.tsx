@@ -225,10 +225,8 @@ export const Login = () => {
               />
               <select name="kindRol" className="w-100 ps-2 element-form-login" onChange={handleChange}>
                 <option value="v1" disabled>Tipo de participación</option>
-                <option value="1">Guardería</option>
                 <option value="2">Receptor</option>
                 <option value="3">Cuidador</option>
-                <option value="4">Dador</option>
               </select>
               <input
                 type="email"

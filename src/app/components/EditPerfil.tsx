@@ -102,7 +102,7 @@ export const EditPerfil = () => {
         }
         try {
             const response = await axios.delete("https://pet-match-backend.onrender.com/api/user/delete", {
-                data: dataUser 
+                data: dataUser
             })
             window.alert("cuenta eliminada")
             localStorage.clear()
