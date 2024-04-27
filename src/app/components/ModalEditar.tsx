@@ -14,12 +14,13 @@ const ModalEditar: React.FC<Props> = ({ cerrarModal, datosIniciales, }) => {
     const [formData, setFormData] = useState<DogSend>(datosIniciales);
     const [urlDelete , setUrlDelete] = useState<string[]>([]);
 
-    const deleteDog = (): void => {
+    const deleteDog = async () => {
 
         const dogId = formData.id;
         console.log('dogId:', dogId);
         try {
-            axios.post(`https://pet-match-backend.onrender.com/api/dogs/delete?id=` + dogId);
+            const response = await axios.post(`https://pet-match-backend.onrender.com/api/dogs/delete?id=` + dogId);
+            console.log(response);
             cerrarModal();
         }
         catch (error) {
