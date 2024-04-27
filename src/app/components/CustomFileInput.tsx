@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 interface CustomFileInputProps {
-  onChange: (nombreArchivo: string, nuevaImagen: File | null, url : string) => void;
+  onChange: (nuevaImagen: File | null, url : string) => void;
   currentFile: File | null;
   url : string;
 }
@@ -13,13 +13,13 @@ const CustomFileInput: React.FC<CustomFileInputProps> = ({ onChange, currentFile
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {
       setFileName(file.name);
-      onChange(file.name, file, url);
+      onChange( file, url);
     }
   };
 
   const handleClearFile = () => {
     setFileName(null);
-    onChange('', null, url);
+    onChange(null, url);
   };
 
   return (
