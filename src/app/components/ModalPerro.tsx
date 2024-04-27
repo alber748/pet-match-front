@@ -17,13 +17,13 @@ interface ModalPerroProps {
 interface NewPostulacion {
     idUser: string | null,
     idSitter: string,
-    idPerro: number
+    idPerro: string
 }
 export const ModalPerro = ({ perro, modal, cerrarModal }: ModalPerroProps) => {
     const [postulacion, setPostulacion] = useState<NewPostulacion>({
         idUser: '',
         idSitter: '',
-        idPerro: 0
+        idPerro: ''
     })
     const newPostulacion = async () => {
         try {

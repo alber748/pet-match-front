@@ -1,5 +1,5 @@
 export interface DogSend {
-      id: number;
+      id: string;
       idPersona : string;
       name: string;
       edad: string;
@@ -7,10 +7,11 @@ export interface DogSend {
       files: File[] ;
       descripcion: string;
       situacion: string;
+      urlsToDel? : string[];
 }
 
 export interface Dog {
-      _id: number;
+      _id: string;
       idPersona : string;
       name: string;
       edad: string;
