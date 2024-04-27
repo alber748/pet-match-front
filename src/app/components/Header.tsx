@@ -2,6 +2,8 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { useState, useEffect } from "react"
+
 
 //Assets
 import logo from "../../assets/logo.png"
@@ -9,11 +11,24 @@ import logo from "../../assets/logo.png"
 export const Header = () => {
   const token = localStorage.getItem("token")
   const navigate = useNavigate()
+  const [userRol, setUserRol] = useState(false)
 
   const handleSesion = () => {
     localStorage.clear()
     navigate("/")
+    setUserRol(false)
   }
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user !== null && user !== undefined && user !== "") {
+      const userP = JSON.parse(user);
+      if (Array.isArray(userP)) {
+        if (userP.some(prop => prop.kindRol === "2")) {
+          setUserRol(true);
+        }
+      }
+    }
+  }, [navigate, userRol]);
   return (
     <header className=''>
       <div className='container-header desktop-header d-md-flex d-hidden'>
@@ -23,7 +38,7 @@ export const Header = () => {
         </div>
         <div className='col-6 d-flex justify-content-between nav-header'>
           <NavLink to='/' className='link-head'> Inicio </NavLink>
-          <NavLink to='/adopta' className='link-head'> Adopta </NavLink>
+          {userRol ? <NavLink to='/adopta' className='link-head'> Adopta </NavLink> : ""}
           <NavLink to='/acerca-de' className='link-head'> Acerca de </NavLink>
           {!token ? <NavLink to='/login' className='link-head'> Ingresar </NavLink> :
             <>
