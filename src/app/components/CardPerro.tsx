@@ -2,7 +2,9 @@ import { useRef, useEffect, useState } from 'react';
 
 //Componentes
 import { ModalPerro } from './ModalPerro';
-import { Dog } from '../models/Dog';
+import { Dog, DogSend } from '../models/Dog';
+import ModalEditar from './ModalEditar';
+import axios from 'axios';
 
 
 interface CardPerroProps {
@@ -11,7 +13,53 @@ interface CardPerroProps {
 
 export const CardPerro = ({ perro }: CardPerroProps) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalEditar, setModalEditar] = useState(false);
   const imagenRef = useRef<HTMLImageElement | null>(null);
+
+
+  const [dataInicial, setDataInicial] = useState<DogSend>({
+    id: perro._id,
+    name: perro.name,
+    edad: perro.edad,
+    peso: perro.peso,
+    files: [],
+    descripcion: perro.descripcion,
+    situacion: perro.situacion,
+    idPersona: perro.idPersona,
+    urlsToDel: perro.files
+  });
+
+  const becomeUrlToFile = async () => {
+    const urls = perro.files;
+
+
+    const promises = urls.map(async (url) => {
+        try {
+            const response = await axios.get(url, { responseType: 'blob' });
+            const blob = new Blob([response.data]);
+            return new File([blob], 'imagen.jpg', { type: 'image/jpeg' });
+        } catch (error) {
+            console.error('Error al obtener la imagen:', error);
+            return null;
+        }
+    });
+    try {
+        const files = await Promise.all(promises);
+
+        // Filtra los archivos nulos y actualiza el estado
+        if(files.length > 0){
+          setDataInicial((prevData) => ({
+            ...prevData,
+            files: files.filter((file) => file !== null) as File[],
+        }));
+
+        console.log('files:', files);
+        }
+
+    } catch (error) {
+        console.error('Error al obtener las imágenes:', error);
+    }
+};
 
   const abrirModal = () => {
     setModalVisible(true);
@@ -22,7 +70,15 @@ export const CardPerro = ({ perro }: CardPerroProps) => {
     setModalVisible(false);
     document.body.style.overflow = "auto";
   };
+  const abrirModalEditar = () => {
+    setModalEditar(true);
+    document.body.style.overflow = "hidden";
+  };
 
+  const cerrarModalEditar = () => {
+    setModalEditar(false);
+    document.body.style.overflow = "auto";
+  };
   useEffect(() => {
     const calcularBorderRadius = () => {
       const imagen = imagenRef.current;
@@ -38,6 +94,8 @@ export const CardPerro = ({ perro }: CardPerroProps) => {
     if (imagen) {
       imagen.onload = calcularBorderRadius;
     }
+    becomeUrlToFile();
+    
   }, []);
   return (
     <>
@@ -51,9 +109,10 @@ export const CardPerro = ({ perro }: CardPerroProps) => {
             </svg>
           </div>
         </div>
-
+      <button onClick={abrirModalEditar}> editar </button>
       </div>
       {modalVisible ? <ModalPerro perro={perro} modal={modalVisible} cerrarModal={cerrarModal} /> : ""}
+      {modalEditar ? <ModalEditar datosIniciales={dataInicial} modal={modalEditar} cerrarModal={cerrarModalEditar} /> : ""}
     </>
 
   )

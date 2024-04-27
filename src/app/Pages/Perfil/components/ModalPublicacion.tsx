@@ -9,7 +9,7 @@ export const ModalPublicacion = ({ cerrarModal, location }: ModalPublicacionProp
     const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [formData, setFormData] = useState<DogSend>({
-        id: 0,
+        id: '',
         idPersona: '',
         name: '',
         edad: '',
