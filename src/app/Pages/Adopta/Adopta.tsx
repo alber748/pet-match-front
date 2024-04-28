@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Adopta = () => {
   const [token, setToken] = useState(false)
-  const [showModal, setShowModal] = useState(true);
+  const [, setShowModal] = useState(true);
   const navigate = useNavigate()
 
 

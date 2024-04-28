@@ -10,7 +10,7 @@ import { InfoPostulaciones } from "./components/InfoPostulaciones";
 
 
 export const Perfil = () => {
-  const [showModal, setShowModal] = useState(true);
+  const [, setShowModal] = useState(true);
   const token = localStorage.getItem("token")
   const user = localStorage.getItem("user")
   const userParse = JSON.parse(user ? user : "")

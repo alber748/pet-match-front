@@ -18,7 +18,7 @@ interface NewPostulacion {
     idPerro: string
 }
 export const ModalPerro = ({ perro, modal, cerrarModal }: ModalPerroProps) => {
-    const [postulacion, setPostulacion] = useState<NewPostulacion>({
+    const [, setPostulacion] = useState<NewPostulacion>({
         idUser: '',
         idSitter: '',
         idPerro: ''
@@ -38,6 +38,7 @@ export const ModalPerro = ({ perro, modal, cerrarModal }: ModalPerroProps) => {
                     idPerro: perro._id
                 }
                 setPostulacion(postulacion)
+
                 console.log(postulacion)
                 const response = await axios.post("http://localhost:4000/api/postulaciones/new", postulacion)
                 console.log(response.data)
