@@ -5,15 +5,22 @@ import axios from "axios";
 import { ModalPublicacion } from "./ModalPublicacion"
 import { CardPerro } from "../../../components/CardPerro";
 import { Dog } from "../../../models/Dog";
+import { Postulante } from "../../../models/Postulante";
 
 
-interface Iadopciones {
+interface IPostulaciones {
     title: string;
     agregarPerros?: () => void;
 }
 
+interface DataPostulacion  {
+    estado : string;
+    id : string;
+    perro : Dog;
+    usuario : Postulante;
+}
 
-export const InfoAdopciones = ({ title }: Iadopciones) => {
+export const InfoPostulaciones = ({ title }: IPostulaciones) => {
     const [mostrasPerros, setMostrarPerros] = useState(false);
     const [modalFormAddPerros, setModalFormAddPerros] = useState(false)
 
@@ -25,14 +32,16 @@ export const InfoAdopciones = ({ title }: Iadopciones) => {
         setModalFormAddPerros(prevState => !prevState)
     };
 
-    const [data, setData] = useState([] as Dog[]);
+    const [data, setData] = useState([] as DataPostulacion[]);
     const idUser = JSON.parse(localStorage.getItem('idUser') || '') || '';
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://pet-match-backend.onrender.com/api/dogs/get?idUser=` + idUser);
-                setData(response.data.dogs);
+                const response = await axios.get(`https://pet-match-backend.onrender.com/api/postulaciones/get-by-postulant?idUser=` + idUser);
+                const dogs = response.data.postulaciones;
+                setData(dogs as DataPostulacion[]);
+
             } catch (error) {
                 console.error('Error al obtener datos:', error);
             }
@@ -56,7 +65,7 @@ export const InfoAdopciones = ({ title }: Iadopciones) => {
                 <>
                     {Array.isArray(data) ? (
                         data.slice(0, 4).map((item, index) => (
-                            <CardPerro perro={item} key={index} kind="adopcion" />
+                            <CardPerro estado={ item.estado } perro={item.perro} idPostulacion={ item.id } key={index} postulante={ item.usuario } kind="postulacion"/>
                         ))
                     ) : (
                         <li>No hay datos disponibles</li>
@@ -74,7 +83,7 @@ export const InfoAdopciones = ({ title }: Iadopciones) => {
         <div>
             <div className="d-flex  justify-content-between">
                 <h1>{title}</h1>
-                {title === "Tus publicaciones de adopción" ?
+                {title === "Tus postulaciones de adopción" ?
                     <button className="btn-adoptar px-2 me-3" onClick={handleModal}>Publicar</button>
                     : ""}
             </div>

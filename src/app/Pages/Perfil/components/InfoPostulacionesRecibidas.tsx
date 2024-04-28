@@ -7,13 +7,13 @@ import { CardPerro } from "../../../components/CardPerro";
 import { Dog } from "../../../models/Dog";
 
 
-interface Iadopciones {
+interface IPostulaciones {
     title: string;
     agregarPerros?: () => void;
 }
 
 
-export const InfoAdopciones = ({ title }: Iadopciones) => {
+export const InfoPostulacionesRecibidas = ({ title }: IPostulaciones) => {
     const [mostrasPerros, setMostrarPerros] = useState(false);
     const [modalFormAddPerros, setModalFormAddPerros] = useState(false)
 
@@ -31,8 +31,13 @@ export const InfoAdopciones = ({ title }: Iadopciones) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://pet-match-backend.onrender.com/api/dogs/get?idUser=` + idUser);
-                setData(response.data.dogs);
+                const response = await axios.get(`https://pet-match-backend.onrender.com/api/postulaciones/get-by-sitter?idUser=` + idUser);
+                
+                const dogs = response.data.postulaciones.map((postulacion: any) => postulacion.perro);
+                
+                setData(dogs);
+
+                console.log(dogs);
             } catch (error) {
                 console.error('Error al obtener datos:', error);
             }
@@ -56,7 +61,7 @@ export const InfoAdopciones = ({ title }: Iadopciones) => {
                 <>
                     {Array.isArray(data) ? (
                         data.slice(0, 4).map((item, index) => (
-                            <CardPerro perro={item} key={index} kind="adopcion" />
+                            <CardPerro kind="postulacion" perro={item} key={index} />
                         ))
                     ) : (
                         <li>No hay datos disponibles</li>
@@ -74,7 +79,7 @@ export const InfoAdopciones = ({ title }: Iadopciones) => {
         <div>
             <div className="d-flex  justify-content-between">
                 <h1>{title}</h1>
-                {title === "Tus publicaciones de adopción" ?
+                {title === "Tus postulaciones de adopción" ?
                     <button className="btn-adoptar px-2 me-3" onClick={handleModal}>Publicar</button>
                     : ""}
             </div>

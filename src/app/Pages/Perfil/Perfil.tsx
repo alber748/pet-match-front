@@ -4,6 +4,7 @@ import { InfoAdopciones } from "./components/InfoAdopciones"
 
 import { InformacionPerfil } from "./components/InformacionPerfil"
 import { useNavigate } from "react-router-dom";
+import { InfoPostulaciones } from "./components/InfoPostulaciones";
 
 
 
@@ -29,7 +30,7 @@ export const Perfil = () => {
             <InformacionPerfil />
           </div>
           <div className="mb-5">
-            <InfoAdopciones
+            <InfoPostulaciones
               title="Tus postulaciones para adoptar"
             />
           </div>

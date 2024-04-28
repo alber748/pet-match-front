@@ -21,16 +21,7 @@ export const InformacionPerfil = () => {
         if (token) {
             const user = localStorage.getItem('user');
             if (user) {
-                const arregloUsuarios = JSON.parse(user);
-                if (Array.isArray(arregloUsuarios) && arregloUsuarios.length > 0) {
-                    const primerUsuario = arregloUsuarios[0];
-                    setInfoUser({
-                        ...infoUser,
-                        ...primerUsuario
-                    });
-                } else {
-                    console.log('El arreglo de usuarios está vacío.');
-                }
+                setInfoUser(JSON.parse(user));
             }
         }
     }, []);

@@ -64,8 +64,6 @@ footer {
   min-height: 580px;
 }
 
-
-
 .bg-catalogo {
   background-color: #fbfbfb;
 }
@@ -331,7 +329,6 @@ footer {
 
 .border-radius {
   border-radius: 10px;
-  box-shadow: 3px 3px 3px 1px #b8b8b8;
 }
 
 .img-modal {
@@ -356,13 +353,13 @@ footer {
 
   & div {
     background-color: #ebab58d7;
-
-    & div {
-      background-color: #f3f3f3e1;
-
-    }
   }
 
+}
+
+.normal-style {
+  background-color: transparent !important;
+  border: none !important;
 }
 
 .bg-modal-inicator {
@@ -374,7 +371,6 @@ footer {
   border-radius: 5px;
   color: #fbfbfb;
   border: none;
-  box-shadow: 3px 3px 3px 1px #b8b8b8;
 }
 
 .btn-adoptar:nth-child(1) {

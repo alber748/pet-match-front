@@ -7,8 +7,6 @@ import { Dog } from "../models/Dog";
 import axios from "axios";
 import { useState } from "react";
 
-
-
 interface ModalPerroProps {
     perro: Dog;
     modal: boolean;
@@ -25,28 +23,22 @@ export const ModalPerro = ({ perro, modal, cerrarModal }: ModalPerroProps) => {
         idSitter: '',
         idPerro: ''
     })
-    const newPostulacion = async () => {
-        try {
-            const response = await axios.post("https://pet-match-backend.onrender.com/api/postulaciones/new", postulacion)
-            console.log(response)
-        } catch (error) {
-            console.error('No se pudo completar la postulación', error);
-        }
-    }
-
-    const handleAdoptar = () => {
+    const handleAdoptar = async () => {
         const idUserFromLocalStorage = localStorage.getItem('idUser');
         let idUser: string | null = null;
         if (idUserFromLocalStorage) {
             try {
                 idUser = JSON.parse(idUserFromLocalStorage);
-                setPostulacion({
-                    ...postulacion,
+
+                const postulacion = {
                     idUser: idUser,
                     idSitter: perro.idPersona,
                     idPerro: perro._id
-                })
-                newPostulacion()
+                }
+                setPostulacion(postulacion)
+                console.log(postulacion)
+                const response = await axios.post("http://localhost:4000/api/postulaciones/new", postulacion)
+                console.log(response.data)
             } catch (error) {
                 console.error('Error al analizar el valor de idUser en localStorage:', error);
             }

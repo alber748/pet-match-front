@@ -7,20 +7,12 @@ import axios from "axios"
 
 export const EditPerfil = () => {
     const [opcionesEdit, setOpcionesEdit] = useState<string>('personal');
-    const [formDataEditInfo, setFormDataEditInfo] = useState<UserEditInfo>({
-        name: '',
-        lastname: '',
-        phone: '',
-        location: '',
-        kindRol: '',
-        email: '',
-        entidad: '',
-    });
+    
     const [formDataEditPassword, setFormDataEditPassword] = useState<UserEditPassword>({
         email: '',
         newPassword: '',
         oldPassword: ''
-    })
+    });
     const [infoUser, setInfoUser] = useState<UserEditInfo>({
         email: "",
         name: "",
@@ -29,8 +21,19 @@ export const EditPerfil = () => {
         location: "",
         kindRol: "",
         entidad: "",
-    })
-    const navigate = useNavigate()
+    });
+    const navigate = useNavigate();
+
+    // Nueva variable de estado para manejar los cambios en los inputs
+    const [editedInfo, setEditedInfo] = useState<UserEditInfo>({
+        email: "",
+        name: "",
+        lastname: "",
+        phone: "",
+        location: "",
+        kindRol: "",
+        entidad: "",
+    });
 
     const handleOpciones = (event: React.MouseEvent<HTMLLIElement>): void => {
         const option = event.currentTarget.dataset.option;
@@ -40,23 +43,26 @@ export const EditPerfil = () => {
     };
 
     const handleChangeEditInfo = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setFormDataEditInfo({
-            ...formDataEditInfo,
+        setEditedInfo({
+            ...editedInfo,
             [e.target.name]: e.target.value,
         });
-    }
+    };
+
     const handleChangeEditPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormDataEditPassword({
             ...formDataEditPassword,
             [e.target.name]: e.target.value,
-        })
-    }
+        });
+    };
+
     const updateInfo: React.FormEventHandler<HTMLFormElement> = async (event) => {
-        event.preventDefault()
-        const newInfoUser = formDataEditInfo;
+        event.preventDefault();
+        const newInfoUser = editedInfo; // Utilizamos los datos editados en lugar de los datos del usuario
         try {
             const response = await axios.put('https://pet-match-backend.onrender.com/api/user/edit', newInfoUser);
-            console.log('Usuario logueado:', response.data);
+            localStorage.setItem('user', JSON.stringify(response.data.user));
+            console.log('Usuario logueado:', response.data.user);
             if (response.data.token) {
                 navigate('/');
                 localStorage.setItem('token', JSON.stringify(response.data.token));
@@ -68,11 +74,23 @@ export const EditPerfil = () => {
         } catch (error) {
             console.error('Error al crear usuario:', error);
         }
-    }
+    };
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            const user = localStorage.getItem('user');
+            console.log('Usuario:', user);
+            if (user) {
+                setInfoUser(JSON.parse(user));
+                setEditedInfo(JSON.parse(user)); // Inicializamos editedInfo con los datos del usuario
+            }
+        }
+    }, []);
 
     const updatePassword: React.FormEventHandler<HTMLFormElement> = async (event) => {
-        event.preventDefault()
-        const newPassword = formDataEditPassword
+        event.preventDefault();
+        const newPassword = formDataEditPassword;
         try {
             const response = await axios.post(' https://pet-match-backend.onrender.com/api/user/cambiar-pasword', newPassword);
             console.log('Contraseña actualizada', response.data);
@@ -87,26 +105,8 @@ export const EditPerfil = () => {
         } catch (error) {
             console.error('Error al cambiar contraseña:', error);
         }
-    }
+    };
 
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            const user = localStorage.getItem('users');
-            if (user) {
-                const arregloUsuarios = JSON.parse(user);
-                if (Array.isArray(arregloUsuarios) && arregloUsuarios.length > 0) {
-                    const primerUsuario = arregloUsuarios[0];
-                    setInfoUser({
-                        ...infoUser,
-                        ...primerUsuario
-                    });
-                } else {
-                    console.log('El arreglo de usuarios está vacío.');
-                }
-            }
-        }
-    }, [infoUser]);
     return (
         <div className="container-xxl  container-section-edit">
             <div className="row mt-5 p-3 container-editar-perfil">
@@ -147,7 +147,7 @@ export const EditPerfil = () => {
                                         <h5 className="mb-2">Nombre</h5>
                                         <input
                                             type="text"
-                                            value={infoUser.name}
+                                            value={editedInfo.name}
                                             name="name"
                                             className="w-75"
                                             onChange={handleChangeEditInfo}
@@ -157,7 +157,7 @@ export const EditPerfil = () => {
                                         <h5 className="mb-2">Apellido</h5>
                                         <input
                                             type="text"
-                                            value={infoUser.lastname}
+                                            value={editedInfo.lastname}
                                             name="lastname"
                                             className="w-75"
                                             onChange={handleChangeEditInfo}
@@ -180,7 +180,7 @@ export const EditPerfil = () => {
                                             inputMode="tel"
                                             pattern="[0-9]*"
                                             maxLength={10}
-                                            value={infoUser.phone}
+                                            value={editedInfo.phone}
                                             name="phone"
                                             className="w-75"
                                             onChange={handleChangeEditInfo}
@@ -190,7 +190,7 @@ export const EditPerfil = () => {
                                         <h5 className="mb-2">Ubicación</h5>
                                         <input
                                             type="text"
-                                            value={infoUser.location}
+                                            value={editedInfo.location}
                                             name="location"
                                             className="w-75"
                                             onChange={handleChangeEditInfo}
@@ -211,7 +211,7 @@ export const EditPerfil = () => {
                                 <h5 className="mb-2">Email</h5>
                                 <input
                                     type="email"
-                                    value={infoUser.email}
+                                    value={editedInfo.email}
                                     name="email"
                                     className="w-75"
                                     onChange={handleChangeEditInfo}
