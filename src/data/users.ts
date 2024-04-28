@@ -9,6 +9,7 @@ export interface User {
       location: string;
       kindRol: string;
       entidad: string;
+      photo: string;
 }
 
 export interface UserLogin {
@@ -24,6 +25,8 @@ export interface UserEditInfo {
       location: string;
       kindRol: string;
       entidad: string;
+      photo: string;
+
 }
 export interface UserEditPassword {
       email: string,

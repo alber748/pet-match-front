@@ -24,6 +24,7 @@ export const Login = () => {
     location: '',
     kindRol: '',
     entidad: '',
+    photo: ''
   });
 
   const [formDataLogin, setFormDataLogin] = useState<UserLogin>({
@@ -54,11 +55,11 @@ export const Login = () => {
       const response = await axios.post('https://pet-match-backend.onrender.com/api/auth/', user);
 
       console.log('Usuario logueado:', response.data);
-      const { email, entidad, kindRol, lastname, name, location, phone } = response.data
+      const { email, entidad, kindRol, lastname, name, location, phone, photo } = response.data
       if (response.data.token) {
         localStorage.setItem('token', JSON.stringify(response.data.token));
         localStorage.setItem('idUser', JSON.stringify(response.data.uid));
-        localStorage.setItem('user', JSON.stringify({ email, entidad, kindRol, lastname, name, location, phone }))
+        localStorage.setItem('user', JSON.stringify([{ email, entidad, kindRol, lastname, name, location, phone, photo }]))
         if (locationHook.pathname === "/login") {
           navigate('/');
         } else {
@@ -149,60 +150,100 @@ export const Login = () => {
             <option value="1">Persona</option>
             <option value="2">Organización</option>
           </select>
-          <input
-            type="text"
-            placeholder="Ingrese su Nombre"
-            className="w-100 ps-2 element-form-login"
-            name="name"
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="Ingrese su Apellido"
-            className="w-100 ps-2 element-form-login"
-            name="lastname"
-            onChange={handleChange}
-          />
-          <input
-            type="tel"
-            inputMode="tel"
-            pattern="[0-9]*"
-            maxLength={10}
-            placeholder="Teléfono"
-            className="w-100 ps-2 element-form-login"
-            name="phone"
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="Ej: Argentina, Córdoba"
-            className="w-100 ps-2 element-form-login"
-            name="location"
-            onChange={handleChange}
-          />
-          <select name="kindRol" className="w-100 ps-2 element-form-login" onChange={handleChange}>
-            <option value="v1" disabled>
-              Tipo de participación
-            </option>
-            <option value="1">Guardería</option>
-            <option value="2">Receptor</option>
-            <option value="3">Cuidador</option>
-            <option value="4">Dador</option>
-          </select>
-          <input
-            type="email"
-            placeholder="Example@gmail.com"
-            className="w-100 ps-2 element-form-login"
-            name="email"
-            onChange={handleChange}
-          />
-          <input
-            type="password"
-            placeholder="Crea una contraseña"
-            className="w-100 ps-2 element-form-login"
-            name="password"
-            onChange={handleChange}
-          />
+          {formData.entidad === "2" ?
+            <>
+              < input
+                type="text"
+                placeholder="Ingrese Nombre de Organización"
+                className="w-100 ps-2 element-form-login"
+                name="name"
+                onChange={handleChange}
+              />
+              <input
+                type="tel"
+                inputMode="tel"
+                pattern="[0-9]*"
+                maxLength={10}
+                placeholder="Teléfono"
+                className="w-100 ps-2 element-form-login"
+                name="phone"
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                placeholder="Ej: Argentina, Córdoba"
+                className="w-100 ps-2 element-form-login"
+                name="location"
+                onChange={handleChange}
+              />
+              <input
+                type="email"
+                placeholder="Example@gmail.com"
+                className="w-100 ps-2 element-form-login"
+                name="email"
+                onChange={handleChange}
+              />
+              <input
+                type="password"
+                placeholder="Crea una contraseña"
+                className="w-100 ps-2 element-form-login"
+                name="password"
+                onChange={handleChange}
+              />
+            </>
+            :
+            <>
+              < input
+                type="text"
+                placeholder="Ingrese su Nombre"
+                className="w-100 ps-2 element-form-login"
+                name="name"
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                placeholder="Ingrese su Apellido"
+                className="w-100 ps-2 element-form-login"
+                name="lastname"
+                onChange={handleChange}
+              />
+              <input
+                type="tel"
+                inputMode="tel"
+                pattern="[0-9]*"
+                maxLength={10}
+                placeholder="Teléfono"
+                className="w-100 ps-2 element-form-login"
+                name="phone"
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                placeholder="Ej: Argentina, Córdoba"
+                className="w-100 ps-2 element-form-login"
+                name="location"
+                onChange={handleChange}
+              />
+              <select name="kindRol" className="w-100 ps-2 element-form-login" onChange={handleChange}>
+                <option value="v1" disabled>Tipo de participación</option>
+                <option value="2">Receptor</option>
+                <option value="3">Cuidador</option>
+              </select>
+              <input
+                type="email"
+                placeholder="Example@gmail.com"
+                className="w-100 ps-2 element-form-login"
+                name="email"
+                onChange={handleChange}
+              />
+              <input
+                type="password"
+                placeholder="Crea una contraseña"
+                className="w-100 ps-2 element-form-login"
+                name="password"
+                onChange={handleChange}
+              />
+            </>}
           <div className="d-flex gap-3 mt-3 justify-content-center align-items-baseline">
             <button type="submit">Registrarse</button>
             <p>O <span className="cursor-pointer" onClick={handleLogin}>inicia sesion</span></p>

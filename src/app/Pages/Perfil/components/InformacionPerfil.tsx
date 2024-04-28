@@ -15,6 +15,7 @@ export const InformacionPerfil = () => {
         location: "",
         kindRol: "",
         entidad: "",
+        photo: ""
     })
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -35,10 +36,8 @@ export const InformacionPerfil = () => {
 
     const valuesKindRol = () => {
         const kindRolMappings = {
-            "1": "Guardería",
             "2": "Receptor",
             "3": "Cuidador",
-            "4": "Dador"
         };
         return getMappedValue(infoUser.kindRol, kindRolMappings);
     };
@@ -55,8 +54,9 @@ export const InformacionPerfil = () => {
     }
     return (
         <div className=" d-flex justify-content-center my-5 p-3 container-info-perfil w-100">
-            <div className="h-100 mt-5  cont-img">
-                <img src={logo} alt="" onClick={handleModal} />
+            <div className="h-100 mt-5  cont-img position-relative">
+                <img src={infoUser.photo ? infoUser.photo : logo} alt="" />
+                <span onClick={handleModal} className="position-absolute icon-image">➕</span>
             </div>
             <div className="d-flex flex-column align-items-center w-75 position-relative info-perfil">
                 <div className="position-absolute top-0 end-0 ">

@@ -40,32 +40,30 @@ export const CardPerro = ({ perro, kind, postulante, idPostulacion, estado }: Ca
 
 
     const promises = urls.map(async (url) => {
-        try {
-            const response = await axios.get(url, { responseType: 'blob' });
-            const blob = new Blob([response.data]);
-            return new File([blob], 'imagen.jpg', { type: 'image/jpeg' });
-        } catch (error) {
-            console.error('Error al obtener la imagen:', error);
-            return null;
-        }
+      try {
+        const response = await axios.get(url, { responseType: 'blob' });
+        const blob = new Blob([response.data]);
+        return new File([blob], 'imagen.jpg', { type: 'image/jpeg' });
+      } catch (error) {
+        console.error('Error al obtener la imagen:', error);
+        return null;
+      }
     });
     try {
-        const files = await Promise.all(promises);
+      const files = await Promise.all(promises);
 
-        // Filtra los archivos nulos y actualiza el estado
-        if(files.length > 0){
-          setDataInicial((prevData) => ({
-            ...prevData,
-            files: files.filter((file) => file !== null) as File[],
+      // Filtra los archivos nulos y actualiza el estado
+      if (files.length > 0) {
+        setDataInicial((prevData) => ({
+          ...prevData,
+          files: files.filter((file) => file !== null) as File[],
         }));
-
-        console.log('files:', files);
-        }
+      }
 
     } catch (error) {
-        console.error('Error al obtener las imágenes:', error);
+      console.error('Error al obtener las imágenes:', error);
     }
-};
+  };
 
   const abrirModal = () => {
     setModalVisible(true);
@@ -109,7 +107,7 @@ export const CardPerro = ({ perro, kind, postulante, idPostulacion, estado }: Ca
       imagen.onload = calcularBorderRadius;
     }
     becomeUrlToFile();
-    
+
   }, []);
   return (
     <>

@@ -41,7 +41,9 @@ export const EditPerfil = () => {
             setOpcionesEdit(option);
         }
     };
-
+    const handleReturn = () => {
+        navigate("/perfil")
+    }
     const handleChangeEditInfo = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setEditedInfo({
             ...editedInfo,
@@ -112,11 +114,17 @@ export const EditPerfil = () => {
             <div className="row mt-5 p-3 container-editar-perfil">
                 <div className="col-3 options-editar">
                     <ul className="d-flex flex-column gap-3 cursor-pointer">
+                        <li className="p-3 " onClick={handleReturn} data-option="personal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" className="bi bi-arrow-bar-left me-3" viewBox="0 0 16 16">
+                                <path fillRule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5" />
+                            </svg>
+                            Volver
+                        </li>
                         <li className="p-3 " onClick={handleOpciones} data-option="personal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill me-3" viewBox="0 0 16 16">
                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                             </svg>
-                            Informacion Personal
+                            Información Personal
                         </li>
                         <li className="p-3" onClick={handleOpciones} data-option="contraseña">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="16" height="16" className="me-3"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H392.6c-5.4-9.4-8.6-20.3-8.6-32V352c0-2.1 .1-4.2 .3-6.3c-31-26-71-41.7-114.6-41.7H178.3zM528 240c17.7 0 32 14.3 32 32v48H496V272c0-17.7 14.3-32 32-32zm-80 32v48c-17.7 0-32 14.3-32 32V480c0 17.7 14.3 32 32 32H608c17.7 0 32-14.3 32-32V352c0-17.7-14.3-32-32-32V272c0-44.2-35.8-80-80-80s-80 35.8-80 80z" /></svg>
@@ -133,7 +141,7 @@ export const EditPerfil = () => {
                         <form onSubmit={updateInfo} className=" mt-4 ps-5 form-edit-perfil">
                             <div className="mt-4 cont-img position-relative">
                                 <div className="position-relative rounded-circle overflow-hidden">
-                                    <img src={logo} alt="" className="rounded-circle z-1 img-hover " />
+                                    <img src={infoUser.photo ? infoUser.photo : logo} alt="" className="rounded-circle z-1 img-hover " />
                                     <div className="position-absolute hover-img z-2" >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffffff" className="bi bi-pencil mt-3" viewBox="0 0 16 16">
                                             <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
@@ -161,7 +169,6 @@ export const EditPerfil = () => {
                                             name="lastname"
                                             className="w-75"
                                             onChange={handleChangeEditInfo}
-
                                         />
                                     </div>
                                     <div>
@@ -265,8 +272,8 @@ export const EditPerfil = () => {
                         </div>
                         :
                         <div className="col-9">
-                            <h3 className="ms-2">Cuenta</h3>
-                            <form action="" className=" mt-4 ps-5 form-edit-perfil">
+                            <h3 className="ms-2" >Cuenta</h3>
+                            <form onSubmit={deleteAccount} className=" mt-4 ps-5 form-edit-perfil">
                                 <div className="cuenta-top-section p-2">
                                     <span >¿Estás seguro que deseas cerrar tu cuenta?</span>
                                     <p className=" mt-2 mb-0">Si cierras tu cuenta en PetMatch se eliminarán tus publicaciones y también tus postulaciones .</p>

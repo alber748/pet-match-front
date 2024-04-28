@@ -12,6 +12,8 @@ import { InfoPostulaciones } from "./components/InfoPostulaciones";
 export const Perfil = () => {
   const [showModal, setShowModal] = useState(true);
   const token = localStorage.getItem("token")
+  const user = localStorage.getItem("user")
+  const userParse = JSON.parse(user ? user : "")
   const navigate = useNavigate()
 
   const handleCloseModal = async () => {
@@ -29,16 +31,22 @@ export const Perfil = () => {
           <div className="mx-auto w-75">
             <InformacionPerfil />
           </div>
-          <div className="mb-5">
-            <InfoPostulaciones
-              title="Tus postulaciones para adoptar"
-            />
-          </div>
-          <div className="mb-5">
-            <InfoAdopciones
-              title="Tus publicaciones de adopción"
-            />
-          </div>
+          {userParse[0].kindRol === "2" ?
+            <div className="mb-5">
+              <InfoAdopciones
+                title="Tus postulaciones para adoptar"
+                prop="postulacion"
+              />
+            </div>
+            :
+            <div className="mb-5">
+              <InfoAdopciones
+                title="Tus publicaciones de adopción"
+                prop="publicacion"
+
+              />
+            </div>
+          }
         </> :
         <div className="modal" tabIndex={-1} role="dialog" style={{ display: 'block' }}>
           <div className="modal-dialog" role="document">

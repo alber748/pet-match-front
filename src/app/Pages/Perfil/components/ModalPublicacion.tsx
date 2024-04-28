@@ -96,7 +96,6 @@ export const ModalPublicacion = ({ cerrarModal, location }: ModalPublicacionProp
             console.error('Error al enviar archivos:', error);
         }
     };
-    console.log(location)
     return (
 
         <div className="bg-modal d-flex justify-content-center align-items-center">

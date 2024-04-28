@@ -692,7 +692,7 @@ p .cursor-pointer:hover {
 .container-info-perfil {
   border: 1px solid #cecdcd;
   border-radius: 15px;
-  background-color: rgb(182, 182, 182);
+  background-color: rgb(231, 228, 228);
 
   & .cont-img {
     border-radius: 150px;
@@ -700,7 +700,7 @@ p .cursor-pointer:hover {
 
     & img {
       width: 160px;
-      opacity: 0.2;
+      border-radius: 150px;
     }
   }
 
@@ -845,6 +845,34 @@ p .cursor-pointer:hover {
   }
 }
 
+.card-info-perfil {
+  border: 1px solid #707070;
+  border-radius: 15px;
+  width: 300px;
+  min-height: 350px;
+  height: auto;
+}
+
+
+
+.icon-image {
+  top: 80%;
+  left: 78%;
+  background-color: #e78e07;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.icon-image:hover {
+  background-color: #bb7b04;
+}
 
 .modal-publicaciones {
   top: 0;
