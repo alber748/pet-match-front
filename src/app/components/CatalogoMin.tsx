@@ -53,13 +53,13 @@ export const CatalogoMin = () => {
         {location.pathname === "/" ?
           <div className={`row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4  mb-5 w-100`}>
             {(cantCards().map((perro, index) => (
-              <CardPerro key={index} perro={perro} />
+              <CardPerro kind="adopcion" key={index} perro={perro} />
             )))}
           </div> :
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-gap-4 ">
             {
               allPerros.map((perro, index) => (
-                <CardPerro key={index} perro={perro} />
+                <CardPerro kind="adopcion" key={index} perro={perro} />
               ))
             }
           </div>}

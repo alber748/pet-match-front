@@ -1,30 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
+import { DataPostulacion } from "../../../models/DataPostulacion";
 
-interface CardInfo {
-    estado: string,
-    id: string,
-    perro: {
-        descripcion: string,
-        edad: string,
-        id: string,
-        name: string,
-        peso: string,
-        situacion: string,
-        files: string[];
-    },
-    usuario: {
-        email: string,
-        id: string,
-        lastname: string,
-        location: string,
-        name: string,
-        phone: string,
-    },
 
-}
 
-export const CardInfo = ({ estado, id, perro, usuario }: CardInfo) => {
+export const CardInfo = ({ estado, id, perro, usuario }: DataPostulacion) => {
     const [showInfoPerro, SetshowInfoPerro] = useState(false)
     const [showInfoDador, SetshowInfoDador] = useState(false)
     const handlePerro = () => {
@@ -68,7 +48,6 @@ export const CardInfo = ({ estado, id, perro, usuario }: CardInfo) => {
                         <div>
                             <h5>Info dador</h5>
                             <p>{usuario.email}</p>
-                            <p>{usuario.lastname}</p>
                             <p>{usuario.location}</p>
                             <p>{usuario.name}</p>
                             <p>{usuario.phone}</p>

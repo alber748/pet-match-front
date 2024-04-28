@@ -23,6 +23,8 @@ export const ModalPerro = ({ perro, modal, cerrarModal }: ModalPerroProps) => {
         idSitter: '',
         idPerro: ''
     })
+
+    const infoUser = JSON.parse(localStorage.getItem('infoUser') || '') || '';
     const handleAdoptar = async () => {
         const idUserFromLocalStorage = localStorage.getItem('idUser');
         let idUser: string | null = null;

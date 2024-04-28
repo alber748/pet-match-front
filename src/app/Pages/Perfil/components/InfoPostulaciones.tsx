@@ -6,6 +6,7 @@ import { ModalPublicacion } from "./ModalPublicacion"
 import { CardPerro } from "../../../components/CardPerro";
 import { Dog } from "../../../models/Dog";
 import { Postulante } from "../../../models/Postulante";
+import { DataPostulacion } from "../../../models/DataPostulacion";
 
 
 interface IPostulaciones {
@@ -13,12 +14,6 @@ interface IPostulaciones {
     agregarPerros?: () => void;
 }
 
-interface DataPostulacion  {
-    estado : string;
-    id : string;
-    perro : Dog;
-    usuario : Postulante;
-}
 
 export const InfoPostulaciones = ({ title }: IPostulaciones) => {
     const [mostrasPerros, setMostrarPerros] = useState(false);

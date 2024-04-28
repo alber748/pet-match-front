@@ -23,7 +23,10 @@ interface perro {
 export const FilterPerritos = () => {
   const [allPerros, setAllPerros] = useState([])
   const [filtroPerros, setFiltroPerros] = useState([])
-  const [selectValues, setSelectValues] = useState<selectValues>({})
+  const [selectValues, setSelectValues] = useState<selectValues>({
+    edad: 'a',
+    tamaño: 'a'
+  })
 
   useEffect(() => {
     const fetchData = async () => {

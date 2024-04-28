@@ -31,7 +31,7 @@ export const Perfil = () => {
           <div className="mx-auto w-75">
             <InformacionPerfil />
           </div>
-          {userParse[0].kindRol === "2" ?
+          {userParse.kindRol === "2" ?
             <div className="mb-5">
               <InfoAdopciones
                 title="Tus postulaciones para adoptar"
