@@ -5,7 +5,6 @@ import silueta from "../../assets/silueta_perro.png"
 import corazon from "../../assets/corazon.png"
 import { Dog } from "../models/Dog";
 import axios from "axios";
-import { useState } from "react";
 import { Postulante } from "../models/Postulante";
 
 import logo from "../../assets/logo-user.png"

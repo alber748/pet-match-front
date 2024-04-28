@@ -17,7 +17,7 @@ interface CardPerroProps {
   estado?: string;
 }
 
-export const CardPerro = ({ perro, kind, postulante, idPostulacion, estado }: CardPerroProps) => {
+export const CardPerro = ({ perro, kind, postulante, idPostulacion }: CardPerroProps) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalPostulacionVisible, setModalPostulacionVisible] = useState(false);
   const [modalEditar, setModalEditar] = useState(false);
