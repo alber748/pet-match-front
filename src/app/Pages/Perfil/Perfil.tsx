@@ -33,17 +33,14 @@ export const Perfil = () => {
           </div>
           {userParse.kindRol === "2" ?
             <div className="mb-5">
-              <InfoAdopciones
+              <InfoPostulaciones
                 title="Tus postulaciones para adoptar"
-                prop="postulacion"
               />
             </div>
             :
             <div className="mb-5">
               <InfoAdopciones
                 title="Tus publicaciones de adopción"
-                prop="publicacion"
-
               />
             </div>
           }

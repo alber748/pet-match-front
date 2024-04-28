@@ -23,10 +23,9 @@ export const AcercaDeSegundaSection: React.FC<SectionProps> = ({ title, descript
                             <div className="d-flex gap-4 card-participantes p-4 col-5 ">
                                 <img src={logo} className="logo-user z-2" alt={title} />
                                 <div className="d-flex flex-column align-items-center card-info card-info-1 z-1">
-                                    <h3 className="mt-3">Jeronimo Mana</h3>
-                                    <p className="m-0">Font-End</p>
-                                    <p className="m-0">21 años</p>
-                                    <a href="" className="m-0">Linkedin</a>
+                                    <h3 className="mt-3">Alberto Funes</h3>
+                                    <p className="m-0">Back-End</p>
+                                    <p className="m-0">23 años</p>
                                 </div>
                             </div>
                             <div className="d-flex gap-4 flex-row-reverse card-participantes p-4 col-5 ">
@@ -35,28 +34,6 @@ export const AcercaDeSegundaSection: React.FC<SectionProps> = ({ title, descript
                                     <h3 className="mt-3 ms-2">Jeronimo Mana</h3>
                                     <p className="m-0 ms-2">Font-End</p>
                                     <p className="m-0 ms-2">21 años</p>
-                                    <a href="" className="m-0 ms-2">Linkedin</a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div className="row w-100 gap-5 justify-content-center position-relative">
-                            <div className="d-flex gap-4 card-participantes p-4 col-5 ">
-                                <img src={logo} className="logo-user z-2" alt={title} />
-                                <div className="d-flex flex-column align-items-center card-info card-info-3 z-1">
-                                    <h3 className="mt-3">Jeronimo Mana</h3>
-                                    <p className="m-0">Font-End</p>
-                                    <p className="m-0">21 años</p>
-                                    <a href="" className="m-0">Linkedin</a>
-                                </div>
-                            </div>
-                            <div className="d-flex gap-4 flex-row-reverse card-participantes p-4 col-5 ">
-                                <img src={logo} className="logo-user z-2" alt={title} />
-                                <div className="d-flex flex-column align-items-center card-info card-info-4 z-1">
-                                    <h3 className="mt-3 ms-2">Jeronimo Mana</h3>
-                                    <p className="m-0 ms-2">Font-End</p>
-                                    <p className="m-0 ms-2">21 años</p>
-                                    <a href="" className="m-0 ms-2">Linkedin</a>
                                 </div>
                             </div>
 

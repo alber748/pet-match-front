@@ -34,10 +34,10 @@ export const CardPerro = ({ perro, kind, postulante, idPostulacion, estado }: Ca
     idPersona: perro.idPersona,
     urlsToDel: perro.files
   });
+  const userInfo = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') || '') : '';
 
   const becomeUrlToFile = async () => {
     const urls = perro.files;
-
 
     const promises = urls.map(async (url) => {
       try {
@@ -111,7 +111,7 @@ export const CardPerro = ({ perro, kind, postulante, idPostulacion, estado }: Ca
   }, []);
   return (
     <>
-      <div key={perro._id} className="col z-3  p-0">
+      <div key={perro._id} className="col z-3 p-0 mt-5">
         <div className="d-flex justify-content-center gap-3 position-relative conatiner-card">
           <img ref={imagenRef} src={perro.files[0]} alt={perro.name} />
           <div className=' d-flex justify-content-between perro-nombre px-3'>
@@ -126,13 +126,14 @@ export const CardPerro = ({ perro, kind, postulante, idPostulacion, estado }: Ca
               <path fillRule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
             </svg>
             }
+            { kind === "adopcion" && userInfo.kindRol != "2" ? <button className='btn' onClick={abrirModalEditar}> Edit </button> : "" }
           </div>
         </div>
-        { estado ? <p>Estado: { estado }</p> : "" }
-      <button onClick={abrirModalEditar}> editar </button>
+        
+      
       </div>
       {modalVisible ? <ModalPerro perro={perro} modal={modalVisible} cerrarModal={cerrarModal} /> : ""}
-      {modalPostulacionVisible ? <ModalPerroPostulacion perro={perro} idPostulacion={ idPostulacion! } solicitante = { postulante! } modal={modalPostulacionVisible} cerrarModal={cerrarModalPostulacion} /> : ""}
+      {modalPostulacionVisible ? <ModalPerroPostulacion kind={kind} perro={perro} idPostulacion={ idPostulacion! } solicitante = { postulante! } modal={modalPostulacionVisible} cerrarModal={cerrarModalPostulacion} /> : ""}
       {modalEditar ? <ModalEditar datosIniciales={dataInicial} modal={modalEditar} cerrarModal={cerrarModalEditar} /> : ""}
     </>
 

@@ -59,7 +59,7 @@ export const Login = () => {
       if (response.data.token) {
         localStorage.setItem('token', JSON.stringify(response.data.token));
         localStorage.setItem('idUser', JSON.stringify(response.data.uid));
-        localStorage.setItem('user', JSON.stringify([{ email, entidad, kindRol, lastname, name, location, phone, photo }]))
+        localStorage.setItem('user', JSON.stringify({ email, entidad, kindRol, lastname, name, location, phone, photo }))
         if (locationHook.pathname === "/login") {
           navigate('/');
         } else {
