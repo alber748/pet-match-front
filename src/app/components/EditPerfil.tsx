@@ -21,6 +21,7 @@ export const EditPerfil = () => {
         location: "",
         kindRol: "",
         entidad: "",
+        photo: ""
     });
     const navigate = useNavigate();
 
@@ -33,6 +34,8 @@ export const EditPerfil = () => {
         location: "",
         kindRol: "",
         entidad: "",
+        photo: ""
+
     });
 
     const handleOpciones = (event: React.MouseEvent<HTMLLIElement>): void => {
@@ -273,7 +276,7 @@ export const EditPerfil = () => {
                         :
                         <div className="col-9">
                             <h3 className="ms-2" >Cuenta</h3>
-                            <form onSubmit={deleteAccount} className=" mt-4 ps-5 form-edit-perfil">
+                            <form className=" mt-4 ps-5 form-edit-perfil">
                                 <div className="cuenta-top-section p-2">
                                     <span >¿Estás seguro que deseas cerrar tu cuenta?</span>
                                     <p className=" mt-2 mb-0">Si cierras tu cuenta en PetMatch se eliminarán tus publicaciones y también tus postulaciones .</p>

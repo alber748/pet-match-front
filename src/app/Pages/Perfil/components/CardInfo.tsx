@@ -17,6 +17,7 @@ export const CardInfo = ({ estado, id, perro, usuario }: DataPostulacion) => {
     const eliminarPostulacion = async () => {
         try {
             const response = await axios.post(`https://pet-match-backend.onrender.com/api/postulaciones/delete?id=` + id);
+            console.log(response)
             window.location.reload();
         } catch (error) {
             console.error(error)
