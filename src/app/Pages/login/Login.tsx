@@ -24,6 +24,7 @@ export const Login = () => {
     location: '',
     kindRol: '',
     entidad: '',
+    photo: ''
   });
 
   const [formDataLogin, setFormDataLogin] = useState<UserLogin>({
@@ -54,11 +55,11 @@ export const Login = () => {
       const response = await axios.post('https://pet-match-backend.onrender.com/api/auth/', user);
 
       console.log('Usuario logueado:', response.data);
-      const { email, entidad, kindRol, lastname, name, location, phone } = response.data
+      const { email, entidad, kindRol, lastname, name, location, phone, photo } = response.data
       if (response.data.token) {
         localStorage.setItem('token', JSON.stringify(response.data.token));
         localStorage.setItem('idUser', JSON.stringify(response.data.uid));
-        localStorage.setItem('user', JSON.stringify([{ email, entidad, kindRol, lastname, name, location, phone }]))
+        localStorage.setItem('user', JSON.stringify([{ email, entidad, kindRol, lastname, name, location, phone, photo }]))
         if (locationHook.pathname === "/login") {
           navigate('/');
         } else {

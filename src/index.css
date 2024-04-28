@@ -704,7 +704,7 @@ p .cursor-pointer:hover {
 
     & img {
       width: 160px;
-      opacity: 0.2;
+      border-radius: 150px;
     }
   }
 

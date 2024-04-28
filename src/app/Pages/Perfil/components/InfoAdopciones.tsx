@@ -4,6 +4,7 @@ import axios from "axios";
 //Components
 import { ModalPublicacion } from "./ModalPublicacion"
 import { CardInfo } from "../components/CardInfo"
+import { CardPerro } from "../../../components/CardPerro";
 
 
 interface Iadopciones {
@@ -36,11 +37,11 @@ export const InfoAdopciones = ({ title, prop }: Iadopciones) => {
                     const dataP = response.data.postulaciones
                     setData(dataP);
                 }
-                // else {
-                //     const response = await axios.get(`https://pet-match-backend.onrender.com/api/dogs/get?idUser=` + idUser);
-                //     const dataP = response.data.dogs
-                //     setData(dataP)
-                // }
+                else {
+                    const response = await axios.get(`https://pet-match-backend.onrender.com/api/dogs/get?idUser=` + idUser);
+                    const dataP = response.data.dogs
+                    setData(dataP)
+                }
             } catch (error) {
                 console.error('Error al obtener datos:', error);
             }
@@ -49,7 +50,7 @@ export const InfoAdopciones = ({ title, prop }: Iadopciones) => {
         fetchData();
     }, []);
 
-    const rendercards = () => {
+    const rendercardsPostulacion = () => {
         if (mostrarPerros) {
             return (
                 <>
@@ -81,7 +82,38 @@ export const InfoAdopciones = ({ title, prop }: Iadopciones) => {
             );
         }
     };
+    const rendercardsublicacion = () => {
+        if (mostrarPerros) {
+            return (
+                <>
+                    {Array.isArray(data) ?
+                        (data.map((e, index) => {
+                            return (
+                                <CardPerro perro={e} key={index} />
+                            );
+                        }))
+                        : null}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#bb7b04" className="bi bi-arrow-left-circle" viewBox="0 0 16 16" onClick={handleMostrarPerros}>
+                        <path fillRule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+                    </svg>
+                </>
+            );
+        } else {
+            const slicedData = Array.isArray(data) ? data.slice(0, 4) : [];
 
+            return (
+                <>
+                    {Array.isArray(slicedData) ?
+                        (slicedData.map((e, index) => (<CardPerro perro={e} key={index} />)))
+                        : null}
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#bb7b04" className="bi bi-arrow-right-circle" viewBox="0 0 16 16" onClick={handleMostrarPerros}>
+                        <path fillRule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                    </svg>
+                </>
+            );
+        }
+    }
     return (
         <div>
             <div className="d-flex  justify-content-between">
@@ -91,7 +123,7 @@ export const InfoAdopciones = ({ title, prop }: Iadopciones) => {
                     : ""}
             </div>
             <div className={`d-flex justify-content-start align-items-center gap-3 w-100 p-4 ${mostrarPerros ? "flex-wrap " : "overflow-hidden"}`}>
-                {rendercards()}
+                {prop === "postulacion" ? rendercardsPostulacion() : rendercardsublicacion()}
                 {modalFormAddPerros ? <ModalPublicacion cerrarModal={handleModal} location={"publicar"} /> : ""}
             </div>
         </div >

@@ -2,8 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 
 interface CardInfo {
-    estado?: string,
-    id?: string,
+    estado: string,
+    id: string,
     perro: {
         descripcion: string,
         edad: string,
@@ -11,7 +11,7 @@ interface CardInfo {
         name: string,
         peso: string,
         situacion: string,
-        fotos: string[];
+        files: string[];
     },
     usuario: {
         email: string,
@@ -46,7 +46,7 @@ export const CardInfo = ({ estado, id, perro, usuario }: CardInfo) => {
         <>
             <div className="card-info-perfil">
                 <div className="d-flex jusify-content-center container-fotos ">
-                    <img className="img-fluid " src={perro.fotos[0]} alt="" />
+                    <img className="img-fluid " src={perro.files[0]} alt="" />
                 </div>
                 <div>
                     <div>
